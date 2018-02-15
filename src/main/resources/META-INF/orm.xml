@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings
+        xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+        http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+        version="2.0">
+
+    <entity class="com.lv297.travel_agency.database.entities.Country" name="Country">
+        <table name="country"/>
+        <attributes>
+            <id name ="id">
+                <column name="country_id"/>
+                <generated-value strategy="TABLE"/>
+            </id>
+            <basic name="name">
+                <column name="name"/>
+            </basic>
+            <one-to-many name="cities">
+                <join-column name="country_id"/>
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </one-to-many>
+        </attributes>
+    </entity>
+
+    <entity class="com.lv297.travel_agency.database.entities.City" name="City">
+        <table name="city"/>
+        <attributes>
+            <id name ="id">
+                <column name="city_id"/>
+                <generated-value strategy="TABLE"/>
+            </id>
+            <basic name="name">
+                <column name="name"/>
+            </basic>
+            <one-to-many name="hotels">
+                <join-column name="city_id"/>
+            </one-to-many>
+        </attributes>
+    </entity>
+
+</entity-mappings>
