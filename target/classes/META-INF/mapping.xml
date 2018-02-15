@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings
+        xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+        http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+        version="2.0">
+
+    <entity class="com.lv297.travel_agency.database.entities.Country" name="Country">
+        <table name="country"/>
+        <attributes>
+            <id name ="id">
+                <column name="country_id"/>
+                <generated-value strategy="TABLE"/>
+            </id>
+            <basic name="name">
+                <column name="name"/>
+            </basic>
+            <one-to-many name="cities"/>
+        </attributes>
+    </entity>
+
+    <entity class="com.lv297.travel_agency.database.entities.City" name="City">
+        <table name="city"/>
+        <attributes>
+            <id name ="id">
+                <column name="city_id"/>
+                <generated-value strategy="TABLE"/>
+            </id>
+            <basic name="name">
+                <column name="name"/>
+            </basic>
+            <one-to-many name="hotels"/>
+        </attributes>
+    </entity>
+    <entity class="com.lv297.travel_agency.database.entities.Hotel" name="Hotel">
+        <table name="hotel"/>
+        <attributes>
+            <id name ="id">
+                <column name="hotel_id"/>
+                <generated-value strategy="TABLE"/>
+            </id>
+            <basic name="name">
+                <column name="name"/>
+            </basic>
+            <one-to-many name="rooms"/>
+        </attributes>
+    </entity>
+    <entity class="com.lv297.travel_agency.database.entities.Room" name="Room">
+        <table name="room"/>
+        <attributes>
+            <id name ="id">
+                <column name="room_id"/>
+                <generated-value strategy="TABLE"/>
+            </id>
+            <basic name="type">
+                <column name="type"/>
+            </basic>
+            <basic name="price">
+                <column name="price"/>
+            </basic>
+            <basic name="num_of_beds">
+                <column name="number_of_bed"/>
+            </basic>
+            <one-to-many name="bookings"/>
+        </attributes>
+    </entity>
+    <entity class="com.lv297.travel_agency.database.entities.Client" name="Client">
+        <table name="client"/>
+        <attributes>
+            <id name ="id">
+                <column name="client_id"/>
+                <generated-value strategy="TABLE"/>
+            </id>
+            <basic name="firstname">
+                <column name="firstname"/>
+            </basic>
+            <basic name="lastname">
+                <column name="lastname"/>
+            </basic>
+            <basic name="bithday">
+                <column name="date_birthday"/>
+            </basic>
+            <basic name="citizenship">
+                <column name="citythenship"/>
+            </basic>
+            <one-to-many name="visas"/>
+        </attributes>
+    </entity>
+    <entity class="com.lv297.travel_agency.database.entities.Visa" name="Visa">
+        <table name="visa"/>
+        <attributes>
+            <id name ="id">
+                <column name="visa_id"/>
+                <generated-value strategy="TABLE"/>
+            </id>
+            <basic name="validFrom">
+                <column name="valid_from"/>
+            </basic>
+            <basic name="validTo">
+                <column name="valid_to"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.lv297.travel_agency.database.entities.Booking" name="Booking">
+        <table name="booking"/>
+        <attributes>
+            <id name ="id">
+                <column name="booking_id"/>
+                <generated-value strategy="TABLE"/>
+            </id>
+            <basic name="bookingFrom">
+                <column name="booking_from"/>
+            </basic>
+            <basic name="bookingTo">
+                <column name="booking_to"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>

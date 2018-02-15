@@ -5,16 +5,16 @@ import com.lv297.travel_agency.database.entities.Country;
 import com.lv297.travel_agency.database.hibernate.HibernateUtil;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
+import javax.persistence.Query;
 import java.util.List;
 
 public class CountryDaoImpl implements CountryDAO {
     public List<Country> getAll() {
         HibernateUtil hibernateUtil = new HibernateUtil();
-        List<Country> list = new ArrayList<>();
+        List<Country> list;
         EntityManager manager = hibernateUtil.getManager();
-        Country country = manager.find(Country.class, 1);
-        list.add(country);
+        Query query = manager.createQuery("from Country");
+        list = query.getResultList();
         return list;
     }
 }

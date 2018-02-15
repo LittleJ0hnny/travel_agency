@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class Visa {
     private int id;
-    private Date lastUse;
     private Date validFrom;
     private Date validTo;
 
@@ -14,14 +13,6 @@ public class Visa {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Date getLastUse() {
-        return lastUse;
-    }
-
-    public void setLastUse(Date lastUse) {
-        this.lastUse = lastUse;
     }
 
     public Date getValidFrom() {
@@ -44,7 +35,6 @@ public class Visa {
     public String toString() {
         return "Visa{" +
                 "id=" + id +
-                ", lastUse=" + lastUse +
                 ", validFrom=" + validFrom +
                 ", validTo=" + validTo +
                 '}';
