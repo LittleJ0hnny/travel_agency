@@ -5,13 +5,11 @@
              version="2.1">
 
     <persistence-unit name="persistence" transaction-type="RESOURCE_LOCAL">
-
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <mapping-file>/META-INF/mapping.xml</mapping-file>
-        <class>com.lv297.travel_agency.database.entities.Country</class>
 
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>
 
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/travel_agency"/>
@@ -20,12 +18,20 @@
 
             <property name="hibernate.connection.pool_size" value="5"/>
 
-            <property name="hibernate.show_sql" value="true"/>
+            <!--<property name="hibernate.show_sql" value="true"/>-->
             <property name="hibernate.format_sql" value="true"/>
 
-            <!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
 
     </persistence-unit>
-
 </persistence>
+
+
+
+
+
+
+
+
+

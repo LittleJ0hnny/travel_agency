@@ -1,8 +1,9 @@
 package com.lv297.travel_agency.database.entities;
 
+import javax.persistence.Entity;
 import java.util.Date;
 import java.util.List;
-
+@Entity()
 public class Client {
     private int id;
     private String firstname;
@@ -67,7 +68,6 @@ public class Client {
                 ", lastname='" + lastname + '\'' +
                 ", bithday=" + bithday +
                 ", citizenship='" + citizenship + '\'' +
-                ", visas=" + visas +
                 '}';
     }
 }

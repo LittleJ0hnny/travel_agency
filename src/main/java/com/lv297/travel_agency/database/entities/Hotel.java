@@ -4,8 +4,18 @@ import java.util.List;
 
 public class Hotel {
     private int id;
+    private int cityId;
     private String name;
     private List<Room> rooms;
+
+    public Hotel(){}
+
+    public Hotel(int id, int cityId, String name, List<Room> rooms) {
+        this.id = id;
+        this.cityId = cityId;
+        this.name = name;
+        this.rooms = rooms;
+    }
 
     public int getId() {
         return id;
@@ -13,6 +23,14 @@ public class Hotel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
     }
 
     public String getName() {
@@ -36,7 +54,6 @@ public class Hotel {
         return "Hotel{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", rooms=" + rooms +
                 '}';
     }
 }

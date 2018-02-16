@@ -5,13 +5,15 @@ import java.util.List;
 public class Country {
     private int id;
     private String name;
+    private List<Visa> visas;
     private List<City> cities;
 
     public Country() {}
 
-    public Country(int id, String name, List<City> cities) {
+    public Country(int id, String name, List<Visa> visas, List<City> cities) {
         this.id = id;
         this.name = name;
+        this.visas = visas;
         this.cities = cities;
     }
 
@@ -31,6 +33,14 @@ public class Country {
         this.name = name;
     }
 
+    public List<Visa> getVisas() {
+        return visas;
+    }
+
+    public void setVisas(List<Visa> visas) {
+        this.visas = visas;
+    }
+
     public List<City> getCities() {
         return cities;
     }
@@ -43,6 +53,7 @@ public class Country {
     public String toString() {
         return "Country{" +
                 "id=" + id +
-                ", name='" + name + '}';
+                ", name='" + name + '\'' +
+                '}';
     }
 }

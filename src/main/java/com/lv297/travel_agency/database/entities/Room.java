@@ -4,10 +4,22 @@ import java.util.List;
 
 public class Room {
     private int id;
+    private int hotelId;
     private String type;
     private double price;
     private int num_of_beds;
     private List<Booking> bookings;
+
+    public Room(){}
+
+    public Room(int id, int hotelId, String type, double price, int num_of_beds, List<Booking> bookings) {
+        this.id = id;
+        this.hotelId = hotelId;
+        this.type = type;
+        this.price = price;
+        this.num_of_beds = num_of_beds;
+        this.bookings = bookings;
+    }
 
     public int getId() {
         return id;
@@ -15,6 +27,14 @@ public class Room {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
     }
 
     public String getType() {
@@ -56,7 +76,6 @@ public class Room {
                 ", type='" + type + '\'' +
                 ", price=" + price +
                 ", num_of_beds=" + num_of_beds +
-                ", bookings=" + bookings +
                 '}';
     }
 }
