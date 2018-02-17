@@ -21,11 +21,11 @@ public class RoomHibernateDAOImpl extends ElementDAO<Room, Integer> implements R
         List rooms;
         EntityManager manager = HibernateUtil.getEntityManager();
         Query query = manager.createQuery("SELECT room FROM Room room " +
-                "WHERE room.hotelId="+getIdHotelByName+" AND " +
-                "room.id NOT IN (SELECT booking.roomId FROM Booking booking " +
+                "WHERE room.hotel.name=:hotelName AND " +
+                "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +
                                     "WHERE booking.bookingTo>DATE(:date) AND " +
                                             "booking.bookingFrom<=DATE(:date) AND " +
-                                            "booking.hotelId="+getIdHotelByName+")");
+                                            "booking.hotel.name=:hotelName)");
         query.setParameter("hotelName", hotelName);
         query.setParameter("date", date);
         rooms = query.getResultList();
@@ -38,8 +38,8 @@ public class RoomHibernateDAOImpl extends ElementDAO<Room, Integer> implements R
         List rooms;
         EntityManager manager = HibernateUtil.getEntityManager();
         Query query = manager.createQuery("SELECT room FROM Room room " +
-                "WHERE room.hotelId="+getIdHotelByName+" AND " +
-                    "room.id NOT IN (SELECT booking.roomId FROM Booking booking " +
+                "WHERE room.hotel.name=:hotelName AND " +
+                    "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +
                     "WHERE ((booking.bookingTo>DATE(:dateFrom) AND " +
                         "booking.bookingFrom<=DATE(:dateFrom)) OR " +
                         "(booking.bookingTo>=DATE(:dateTo) AND " +
@@ -48,7 +48,7 @@ public class RoomHibernateDAOImpl extends ElementDAO<Room, Integer> implements R
                         "DATE(:dateFrom)<booking.bookingTo AND " +
                         "DATE(:dateTo)>booking.bookingFrom AND " +
                         "DATE(:dateTo)>=booking.bookingTo)) AND " +
-                        "booking.hotelId="+getIdHotelByName+")");
+                        "booking.hotel.name=:hotelName)");
         query.setParameter("hotelName", hotelName);
         query.setParameter("dateFrom", dateFrom);
         query.setParameter("dateTo", dateTo);
