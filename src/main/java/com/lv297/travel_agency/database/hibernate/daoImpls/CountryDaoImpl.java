@@ -1,7 +1,7 @@
 package com.lv297.travel_agency.database.hibernate.daoImpls;
 
 import com.lv297.travel_agency.database.dao.CountryDAO;
-import com.lv297.travel_agency.database.entities.Country;
+import com.lv297.travel_agency.entities.Country;
 import com.lv297.travel_agency.database.hibernate.HibernateUtil;
 
 import javax.persistence.EntityManager;

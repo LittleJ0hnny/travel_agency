@@ -1,9 +1,11 @@
-package com.lv297.travel_agency.database.entities;
+package com.lv297.travel_agency.entities;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-@Entity()
+
+@Entity
+@Table(name = "client")
 public class Client {
     private int id;
     private String firstname;
@@ -12,6 +14,9 @@ public class Client {
     private String citizenship;
     private List<Visa> visas;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "client_id", nullable = false, unique = true)
     public int getId() {
         return id;
     }
@@ -20,6 +25,7 @@ public class Client {
         this.id = id;
     }
 
+    @Column(name = "firstname", nullable = false, length = 50)
     public String getFirstname() {
         return firstname;
     }
@@ -28,6 +34,7 @@ public class Client {
         this.firstname = firstname;
     }
 
+    @Column(name = "lastname", nullable = false, length = 50)
     public String getLastname() {
         return lastname;
     }
@@ -36,6 +43,7 @@ public class Client {
         this.lastname = lastname;
     }
 
+    @Column(name = "date_birthday", nullable = false)
     public Date getBithday() {
         return bithday;
     }
@@ -44,6 +52,7 @@ public class Client {
         this.bithday = bithday;
     }
 
+    @Column(name = "citythenship", nullable = false, length = 80)
     public String getCitizenship() {
         return citizenship;
     }
@@ -52,6 +61,7 @@ public class Client {
         this.citizenship = citizenship;
     }
 
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<Visa> getVisas() {
         return visas;
     }

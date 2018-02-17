@@ -1,24 +1,28 @@
-package com.lv297.travel_agency.database.entities;
+package com.lv297.travel_agency.entities;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "city")
 public class City {
     private int id;
-    private int countryId;
     private String name;
+    private Country country;
     private List<Hotel> hotels;
 
-    public City() {
+    public City() { }
 
-    }
-
-    public City(int id, int countryId, String name, List<Hotel> hotels) {
+    public City(int id, String name, Country country, List<Hotel> hotels) {
         this.id = id;
-        this.countryId = countryId;
         this.name = name;
+        this.country = country;
         this.hotels = hotels;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="city_id", nullable = false, unique = true)
     public int getId() {
         return id;
     }
@@ -27,14 +31,7 @@ public class City {
         this.id = id;
     }
 
-    public int getCountryId() {
-        return countryId;
-    }
-
-    public void setCountryId(int countryId) {
-        this.countryId = countryId;
-    }
-
+    @Column(name = "name", unique = true, nullable = false, length = 80)
     public String getName() {
         return name;
     }
@@ -43,6 +40,16 @@ public class City {
         this.name = name;
     }
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    @OneToMany(mappedBy = "city", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<Hotel> getHotels() {
         return hotels;
     }
@@ -56,6 +63,7 @@ public class City {
         return "City{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", country=" + country +
                 '}';
     }
 }

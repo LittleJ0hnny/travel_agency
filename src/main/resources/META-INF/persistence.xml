@@ -6,7 +6,13 @@
 
     <persistence-unit name="persistence" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <mapping-file>/META-INF/mapping.xml</mapping-file>
+        <class>com.lv297.travel_agency.entities.Country</class>
+        <class>com.lv297.travel_agency.entities.City</class>
+        <class>com.lv297.travel_agency.entities.Hotel</class>
+        <class>com.lv297.travel_agency.entities.Room</class>
+        <class>com.lv297.travel_agency.entities.Booking</class>
+        <class>com.lv297.travel_agency.entities.Client</class>
+        <class>com.lv297.travel_agency.entities.Visa</class>
 
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>

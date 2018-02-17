@@ -1,7 +1,10 @@
-package com.lv297.travel_agency.database.entities;
+package com.lv297.travel_agency.entities;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "country")
 public class Country {
     private int id;
     private String name;
@@ -17,6 +20,9 @@ public class Country {
         this.cities = cities;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "country_id", nullable = false, unique = true)
     public int getId() {
         return id;
     }
@@ -25,6 +31,7 @@ public class Country {
         this.id = id;
     }
 
+    @Column(name = "name", unique = true, nullable = false, length = 50)
     public String getName() {
         return name;
     }
@@ -33,6 +40,7 @@ public class Country {
         this.name = name;
     }
 
+    @OneToMany(mappedBy = "country", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<Visa> getVisas() {
         return visas;
     }
@@ -41,6 +49,7 @@ public class Country {
         this.visas = visas;
     }
 
+    @OneToMany(mappedBy = "country", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<City> getCities() {
         return cities;
     }

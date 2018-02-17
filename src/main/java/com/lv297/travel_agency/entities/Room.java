@@ -1,10 +1,13 @@
-package com.lv297.travel_agency.database.entities;
+package com.lv297.travel_agency.entities;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "room")
 public class Room {
     private int id;
-    private int hotelId;
+    private Hotel hotel;
     private String type;
     private double price;
     private int num_of_beds;
@@ -12,15 +15,9 @@ public class Room {
 
     public Room(){}
 
-    public Room(int id, int hotelId, String type, double price, int num_of_beds, List<Booking> bookings) {
-        this.id = id;
-        this.hotelId = hotelId;
-        this.type = type;
-        this.price = price;
-        this.num_of_beds = num_of_beds;
-        this.bookings = bookings;
-    }
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "room_id", nullable = false, unique = true)
     public int getId() {
         return id;
     }
@@ -29,14 +26,16 @@ public class Room {
         this.id = id;
     }
 
-    public int getHotelId() {
-        return hotelId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    public Hotel getHotel() {
+        return hotel;
     }
 
-    public void setHotelId(int hotelId) {
-        this.hotelId = hotelId;
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
 
+    @Column(name="type", nullable = false, length = 50)
     public String getType() {
         return type;
     }
@@ -45,6 +44,7 @@ public class Room {
         this.type = type;
     }
 
+    @Column(name = "price", nullable = false, precision = 2)
     public double getPrice() {
         return price;
     }
@@ -53,6 +53,7 @@ public class Room {
         this.price = price;
     }
 
+    @Column(name = "number_of_bed", nullable = false)
     public int getNum_of_beds() {
         return num_of_beds;
     }
@@ -61,6 +62,7 @@ public class Room {
         this.num_of_beds = num_of_beds;
     }
 
+    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<Booking> getBookings() {
         return bookings;
     }
@@ -73,6 +75,7 @@ public class Room {
     public String toString() {
         return "Room{" +
                 "id=" + id +
+                ", hotel=" + hotel +
                 ", type='" + type + '\'' +
                 ", price=" + price +
                 ", num_of_beds=" + num_of_beds +

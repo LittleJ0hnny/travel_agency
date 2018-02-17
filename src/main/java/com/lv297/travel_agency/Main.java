@@ -1,10 +1,10 @@
 package com.lv297.travel_agency;
 
 import com.lv297.travel_agency.database.dao.CountryDAO;
-import com.lv297.travel_agency.database.entities.City;
-import com.lv297.travel_agency.database.entities.Country;
-import com.lv297.travel_agency.database.entities.Hotel;
-import com.lv297.travel_agency.database.entities.Room;
+import com.lv297.travel_agency.entities.City;
+import com.lv297.travel_agency.entities.Country;
+import com.lv297.travel_agency.entities.Hotel;
+import com.lv297.travel_agency.entities.Room;
 import com.lv297.travel_agency.database.hibernate.daoImpls.CountryDaoImpl;
 
 import java.sql.SQLException;
