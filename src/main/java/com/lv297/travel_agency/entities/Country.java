@@ -13,8 +13,7 @@ public class Country {
 
     public Country() {}
 
-    public Country(int id, String name, List<Visa> visas, List<City> cities) {
-        this.id = id;
+    public Country(String name, List<Visa> visas, List<City> cities) {
         this.name = name;
         this.visas = visas;
         this.cities = cities;
