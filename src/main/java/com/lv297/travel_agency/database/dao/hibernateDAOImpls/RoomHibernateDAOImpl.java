@@ -39,16 +39,16 @@ public class RoomHibernateDAOImpl extends ElementDAO<Room, Integer> implements R
         EntityManager manager = HibernateUtil.getEntityManager();
         Query query = manager.createQuery("SELECT room FROM Room room " +
                 "WHERE room.hotel.name=:hotelName AND " +
-                    "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +
-                    "WHERE ((booking.bookingTo>DATE(:dateFrom) AND " +
-                        "booking.bookingFrom<=DATE(:dateFrom)) OR " +
-                        "(booking.bookingTo>=DATE(:dateTo) AND " +
-                        "booking.bookingFrom<DATE(:dateTo)) OR " +
-                        "(DATE(:dateFrom)<=booking.bookingFrom AND " +
-                        "DATE(:dateFrom)<booking.bookingTo AND " +
-                        "DATE(:dateTo)>booking.bookingFrom AND " +
-                        "DATE(:dateTo)>=booking.bookingTo)) AND " +
-                        "booking.hotel.name=:hotelName)");
+                "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +
+                "WHERE ((booking.bookingTo>DATE(:dateFrom) AND " +
+                "booking.bookingFrom<=DATE(:dateFrom)) OR " +
+                "(booking.bookingTo>=DATE(:dateTo) AND " +
+                "booking.bookingFrom<DATE(:dateTo)) OR " +
+                "(DATE(:dateFrom)<=booking.bookingFrom AND " +
+                "DATE(:dateFrom)<booking.bookingTo AND " +
+                "DATE(:dateTo)>booking.bookingFrom AND " +
+                "DATE(:dateTo)>=booking.bookingTo)) AND " +
+                "booking.hotel.name=:hotelName)");
         query.setParameter("hotelName", hotelName);
         query.setParameter("dateFrom", dateFrom);
         query.setParameter("dateTo", dateTo);

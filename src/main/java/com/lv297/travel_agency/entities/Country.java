@@ -3,6 +3,7 @@ package com.lv297.travel_agency.entities;
 import javax.persistence.*;
 import java.util.List;
 
+@Cacheable
 @Entity
 @Table(name = "country")
 public class Country {

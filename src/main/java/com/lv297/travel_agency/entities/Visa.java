@@ -3,6 +3,7 @@ package com.lv297.travel_agency.entities;
 import javax.persistence.*;
 import java.util.Date;
 
+@Cacheable
 @Entity
 @Table(name = "visa")
 public class Visa {

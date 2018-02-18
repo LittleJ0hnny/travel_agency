@@ -21,10 +21,10 @@ public class ElementDAO<E, PK extends Serializable> implements GenericDAO<E, PK>
         try {
             entityManager = HibernateUtil.getEntityManager();
             entityManager.getTransaction().begin();
-            entityManager.refresh(entity);
+            entityManager.merge(entity);
             entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            if(entityManager != null && entityManager.isOpen()) {
+        } finally {
+            if((entityManager != null) && (entityManager.isOpen())) {
                 entityManager.close();
             }
         }
@@ -37,9 +37,9 @@ public class ElementDAO<E, PK extends Serializable> implements GenericDAO<E, PK>
             entityManager.getTransaction().begin();
             entityManager.persist(entity);
             entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            if(entityManager != null && entityManager.isOpen()) {
-               entityManager.close();
+        } finally {
+            if((entityManager != null) && (entityManager.isOpen())) {
+                entityManager.close();
             }
         }
     }
@@ -49,14 +49,13 @@ public class ElementDAO<E, PK extends Serializable> implements GenericDAO<E, PK>
         try {
             entityManager = HibernateUtil.getEntityManager();
             entityManager.getTransaction().begin();
-            entityManager.remove(entity);
+            entityManager.remove(entityManager.merge(entity));
             entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            if(entityManager != null && entityManager.isOpen()) {
+        } finally {
+            if((entityManager != null) && (entityManager.isOpen())) {
                 entityManager.close();
             }
         }
-
     }
 
     public E find(PK id) {
@@ -67,8 +66,8 @@ public class ElementDAO<E, PK extends Serializable> implements GenericDAO<E, PK>
             entityManager.getTransaction().begin();
             entity = entityManager.find(elementClass, id);
             entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            if(entityManager != null && entityManager.isOpen()) {
+        } finally {
+            if((entityManager != null) && (entityManager.isOpen())) {
                 entityManager.close();
             }
         }
@@ -85,8 +84,8 @@ public class ElementDAO<E, PK extends Serializable> implements GenericDAO<E, PK>
             Query query = entityManager.createQuery("from " + elementClass.getSimpleName());
             list = query.getResultList();
             entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            if(entityManager != null && entityManager.isOpen()) {
+        } finally {
+            if((entityManager != null) && (entityManager.isOpen())) {
                 entityManager.close();
             }
         }
