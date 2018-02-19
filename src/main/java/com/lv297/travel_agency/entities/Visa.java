@@ -12,6 +12,7 @@ public class Visa {
     private Country country;
     private Date validFrom;
     private Date validTo;
+    private Date lastTimeUsed;
 
     public Visa() {}
 
@@ -34,7 +35,7 @@ public class Visa {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     public Client getClient() {
         return client;
     }
@@ -43,7 +44,7 @@ public class Visa {
         this.client = client;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     public Country getCountry() {
         return country;
     }
@@ -68,6 +69,15 @@ public class Visa {
 
     public void setValidTo(Date validTo) {
         this.validTo = validTo;
+    }
+
+    @Column(name = "last_time_used", nullable = false)
+    public Date getLastTimeUsed() {
+        return lastTimeUsed;
+    }
+
+    public void setLastTimeUsed(Date lastTimeUsed) {
+        this.lastTimeUsed = lastTimeUsed;
     }
 
     @Override

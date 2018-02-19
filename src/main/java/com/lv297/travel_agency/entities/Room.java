@@ -27,7 +27,7 @@ public class Room {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     public Hotel getHotel() {
         return hotel;
     }
