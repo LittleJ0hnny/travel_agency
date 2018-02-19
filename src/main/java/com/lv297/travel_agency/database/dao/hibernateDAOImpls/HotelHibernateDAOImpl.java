@@ -3,6 +3,7 @@ package com.lv297.travel_agency.database.dao.hibernateDAOImpls;
 import com.lv297.travel_agency.database.HibernateUtil;
 import com.lv297.travel_agency.database.dao.daoAPI.HotelDAO;
 import com.lv297.travel_agency.entities.City;
+import com.lv297.travel_agency.entities.Client;
 import com.lv297.travel_agency.entities.Hotel;
 
 import javax.persistence.EntityManager;
@@ -67,5 +68,54 @@ public class HotelHibernateDAOImpl extends ElementDAO<Hotel, Integer> implements
         query.setParameter("dateTo", dateTo);
         hotels = query.getResultList();
         return hotels;
+    }
+
+    @Override
+    public List<Client> clients(String hotelName) {
+        List clients;
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        Query query = entityManager.createQuery("SELECT DISTINCT booking.client FROM Booking booking " +
+                "WHERE booking.hotel.name=:hotelName");
+        query.setParameter("hotelName",hotelName);
+        clients = query.getResultList();
+        return clients;
+    }
+
+    @Override
+    public int numberClients(String hotelName) {
+        int number;
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        Query query = entityManager.createQuery("SELECT COUNT(DISTINCT booking.client) FROM Booking booking " +
+                "WHERE booking.hotel.name=:hotelName");
+        query.setParameter("hotelName",hotelName);
+        number = (int)(long)query.getSingleResult();
+        return number;
+    }
+
+    @Override
+    public double averageBookingTime(String hotelName) {
+        double averageTime;
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        Query query = entityManager.createQuery("SELECT AVG(booking.bookingTo-booking.bookingFrom) " +
+                "FROM Booking booking " +
+                "WHERE booking.hotel.name=:hotelName");
+        query.setParameter("hotelName",hotelName);
+        averageTime = (double) query.getSingleResult();
+        return averageTime;
+    }
+
+    @Override
+    public List<Object> statistic() {
+        List statistic;
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        Query query = entityManager.createQuery("SELECT booking.hotel, COUNT(DISTINCT booking.client), " +
+                "AVG(booking.bookingTo-booking.bookingFrom) FROM Booking booking " +
+                "GROUP BY booking.hotel");
+//        Query query = entityManager.createQuery("SELECT booking.hotel,  booking.client, " +
+//                "booking.bookingTo-booking.bookingFrom FROM Booking booking " +
+//                "");
+
+        statistic = query.getResultList();
+        return statistic;
     }
 }

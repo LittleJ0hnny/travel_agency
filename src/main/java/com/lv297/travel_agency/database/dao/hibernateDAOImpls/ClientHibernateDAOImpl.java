@@ -20,12 +20,30 @@ public class ClientHibernateDAOImpl extends ElementDAO<Client, Integer> implemen
 
     @Override
     public int numberVisas(String firstname, String lastname) {
-        return visasForClient(firstname,lastname).size();
+        int number;
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        Query query = entityManager.createQuery("SELECT COUNT(visa) FROM Visa visa " +
+                "WHERE visa.client.firstname=:firstname AND " +
+                "visa.client.lastname=:lastname");
+        query.setParameter("firstname", firstname);
+        query.setParameter("lastname", lastname);
+        number = (int) (long)query.getSingleResult();
+        return number;
     }
 
     @Override
     public int numberActiveVisas(String firstname, String lastname) {
-        return activeVisasForClient(firstname,lastname).size();
+        int number;
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        Query query = entityManager.createQuery("SELECT COUNT(visa) FROM Visa visa " +
+                "WHERE visa.client.firstname=:firstname AND " +
+                "visa.client.lastname=:lastname AND " +
+                "visa.validTo>DATE(:curentDate)");
+        query.setParameter("firstname", firstname);
+        query.setParameter("lastname", lastname);
+        query.setParameter("curentDate", DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.now()));
+        number = (int) (long)query.getSingleResult();
+        return number;
     }
 
     @Override

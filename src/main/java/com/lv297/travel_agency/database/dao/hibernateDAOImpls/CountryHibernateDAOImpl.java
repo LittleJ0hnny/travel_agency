@@ -17,7 +17,13 @@ public class CountryHibernateDAOImpl extends ElementDAO<Country, Integer> implem
 
     @Override
     public int numberVisas(String name) {
-        return visasForCountry(name).size();
+        int number;
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        Query query = entityManager.createQuery("SELECT COUNT(visa) FROM Visa visa " +
+                "WHERE visa.country.name=:name");
+        query.setParameter("name", name);
+        number = (int)(long) query.getSingleResult();
+        return number;
     }
 
     @Override
