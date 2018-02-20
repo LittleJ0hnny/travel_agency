@@ -14,11 +14,6 @@ public class Main {
 
         CountryDAO countryDAO = daoFactory.getCountryHibernateDAO();
 
-        Country country = countryDAO.find(1);
-        country.setName("Hohlandia");
-
-        countryDAO.update(country);
-
         List<Country> list = countryDAO.findAll();
 
         for(Country country1: list) {

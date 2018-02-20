@@ -11,84 +11,41 @@ import java.util.List;
 public class ElementDAO<E, PK extends Serializable> implements GenericDAO<E, PK>{
 
     private final Class<E> elementClass;
+    protected final EntityManager entityManager = HibernateUtil.getEntityManager();
 
     ElementDAO(Class<E> elementClass) {
         this.elementClass = elementClass;
     }
 
     public void update(E entity) {
-        EntityManager entityManager = null;
-        try {
-            entityManager = HibernateUtil.getEntityManager();
-            entityManager.getTransaction().begin();
-            entityManager.merge(entity);
-            entityManager.getTransaction().commit();
-        } finally {
-            if((entityManager != null) && (entityManager.isOpen())) {
-                entityManager.close();
-            }
-        }
+        entityManager.getTransaction().begin();
+        entityManager.merge(entity);
+        entityManager.getTransaction().commit();
     }
 
     public void save(E entity) {
-        EntityManager entityManager = null;
-        try {
-            entityManager = HibernateUtil.getEntityManager();
-            entityManager.getTransaction().begin();
-            entityManager.persist(entity);
-            entityManager.getTransaction().commit();
-        } finally {
-            if((entityManager != null) && (entityManager.isOpen())) {
-                entityManager.close();
-            }
-        }
+        entityManager.getTransaction().begin();
+        entityManager.persist(entity);
+        entityManager.getTransaction().commit();
     }
 
     public void delete(E entity) {
-        EntityManager entityManager = null;
-        try {
-            entityManager = HibernateUtil.getEntityManager();
-            entityManager.getTransaction().begin();
-            entityManager.remove(entityManager.merge(entity));
-            entityManager.getTransaction().commit();
-        } finally {
-            if((entityManager != null) && (entityManager.isOpen())) {
-                entityManager.close();
-            }
-        }
+        entityManager.getTransaction().begin();
+        entityManager.remove(entity);
+        entityManager.getTransaction().commit();
     }
 
     public E find(PK id) {
-        EntityManager entityManager = null;
         E entity = null;
-        try {
-            entityManager = HibernateUtil.getEntityManager();
-            entityManager.getTransaction().begin();
-            entity = entityManager.find(elementClass, id);
-            entityManager.getTransaction().commit();
-        } finally {
-            if((entityManager != null) && (entityManager.isOpen())) {
-                entityManager.close();
-            }
-        }
+        entity = entityManager.find(elementClass, id);
         return entity;
     }
 
     public List<E> findAll() {
-        EntityManager entityManager = null;
         List<E> list = null;
-        try {
-            entityManager = HibernateUtil.getEntityManager();
-            entityManager.getTransaction().begin();
-            System.out.println(elementClass.getSimpleName());
-            Query query = entityManager.createQuery("from " + elementClass.getSimpleName());
-            list = query.getResultList();
-            entityManager.getTransaction().commit();
-        } finally {
-            if((entityManager != null) && (entityManager.isOpen())) {
-                entityManager.close();
-            }
-        }
+        System.out.println(elementClass.getSimpleName());
+        Query query = entityManager.createQuery("from " + elementClass.getSimpleName());
+        list = query.getResultList();
         return list;
     }
 }

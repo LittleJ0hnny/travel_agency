@@ -49,8 +49,7 @@ public class ClientHibernateDAOImpl extends ElementDAO<Client, Integer> implemen
     @Override
     public List<Visa> visasForClient(String firstname, String lastname) {
         List visas;
-        EntityManager entityManager = HibernateUtil.getEntityManager();
-        Query query = entityManager.createQuery("SELECT visa FROM Visa visa " +
+        Query query = super.entityManager.createQuery("SELECT visa FROM Visa visa " +
                 "WHERE visa.client.firstname=:firstname AND " +
                 "visa.client.lastname=:lastname");
         query.setParameter("firstname", firstname);
@@ -59,11 +58,11 @@ public class ClientHibernateDAOImpl extends ElementDAO<Client, Integer> implemen
         return visas;
     }
 
+
     @Override
     public List<Visa> activeVisasForClient(String firstname, String lastname) {
         List visas;
-        EntityManager entityManager = HibernateUtil.getEntityManager();
-        Query query = entityManager.createQuery("SELECT visa FROM Visa visa " +
+        Query query = super.entityManager.createQuery("SELECT visa FROM Visa visa " +
                 "WHERE visa.client.firstname=:firstname AND " +
                 "visa.client.lastname=:lastname AND " +
                 "visa.validTo>DATE(:curentDate)");
@@ -77,8 +76,7 @@ public class ClientHibernateDAOImpl extends ElementDAO<Client, Integer> implemen
     @Override
     public List<Country> visitedCountries(String firstname, String lastname) {
         List visitedCountries;
-        EntityManager entityManager = HibernateUtil.getEntityManager();
-        Query query = entityManager.createQuery("SELECT country FROM Visa visa " +
+        Query query = super.entityManager.createQuery("SELECT country FROM Visa visa " +
                 "WHERE visa.client.firstname=:firstname AND " +
                 "visa.client.lastname=:lastname AND " +
                 "visa.lastTimeUsed!=DATE(0000-00-00)");

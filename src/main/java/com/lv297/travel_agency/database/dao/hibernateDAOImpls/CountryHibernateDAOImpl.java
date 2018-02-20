@@ -18,8 +18,7 @@ public class CountryHibernateDAOImpl extends ElementDAO<Country, Integer> implem
     @Override
     public int numberVisas(String name) {
         int number;
-        EntityManager entityManager = HibernateUtil.getEntityManager();
-        Query query = entityManager.createQuery("SELECT COUNT(visa) FROM Visa visa " +
+        Query query = super.entityManager.createQuery("SELECT COUNT(visa) FROM Visa visa " +
                 "WHERE visa.country.name=:name");
         query.setParameter("name", name);
         number = (int)(long) query.getSingleResult();
@@ -29,8 +28,7 @@ public class CountryHibernateDAOImpl extends ElementDAO<Country, Integer> implem
     @Override
     public List<Visa> visasForCountry(String name) {
         List visas;
-        EntityManager entityManager = HibernateUtil.getEntityManager();
-        Query query = entityManager.createQuery("SELECT visa FROM Visa visa " +
+        Query query = super.entityManager.createQuery("SELECT visa FROM Visa visa " +
                 "WHERE visa.country.name=:name");
         query.setParameter("name", name);
         visas = query.getResultList();
