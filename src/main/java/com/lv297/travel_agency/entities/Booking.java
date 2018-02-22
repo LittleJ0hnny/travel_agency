@@ -36,7 +36,7 @@ public class Booking {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     public Client getClient() {
         return client;
     }
@@ -45,7 +45,7 @@ public class Booking {
         this.client = client;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     public Hotel getHotel() {
         return hotel;
     }
@@ -54,7 +54,7 @@ public class Booking {
         this.hotel = hotel;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     public Room getRoom() {
         return room;
     }

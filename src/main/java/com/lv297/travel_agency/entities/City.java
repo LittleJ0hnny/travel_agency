@@ -41,7 +41,7 @@ public class City {
         this.name = name;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     public Country getCountry() {
         return country;
     }

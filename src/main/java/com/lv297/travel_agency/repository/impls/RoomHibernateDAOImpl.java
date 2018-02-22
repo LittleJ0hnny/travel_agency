@@ -16,7 +16,6 @@ public class RoomHibernateDAOImpl extends ElementDAO<Room, Integer> implements R
         super(Room.class);
     }
 
-    private String getIdHotelByName = "(SELECT hotel.id FROM Hotel hotel WHERE hotel.name=:hotelName)";
 
     @Override
     public List<Room> findFreeRoomInHotelInDate(String hotelName, String date) {
@@ -53,5 +52,21 @@ public class RoomHibernateDAOImpl extends ElementDAO<Room, Integer> implements R
         query.setParameter("dateTo", dateTo);
         rooms = query.getResultList();
         return rooms;
+    }
+
+    @Override
+    public List<Object> usingRoomsForHotelInDateRange(String hotelName, String dateFrom, String dateTo) {
+        List usingRooms;
+//        EntityManager entityManager = HibernateUtil.getEntityManager();
+//        Query query = entityManager.createQuery("SELECT k.booking.room, k.dat FROM" +
+//                "(" +
+//                "SELECT booking.room, (booking.bookingTo-booking.bookingFrom) AS dat " +
+//                "FROM Booking booking " +
+//                ") AS k " +
+//                "GROUP BY k.booking.room");
+//        query.setParameter("dateFrom", dateFrom);
+//        query.setParameter("dateTo", dateTo);
+//        usingRooms = query.getResultList();
+        return null;
     }
 }

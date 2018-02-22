@@ -41,7 +41,7 @@ public class Hotel {
         this.name = name;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     public City getCity() {
         return city;
     }
