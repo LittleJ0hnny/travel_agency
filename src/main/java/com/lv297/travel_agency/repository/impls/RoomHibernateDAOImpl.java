@@ -1,16 +1,18 @@
-package com.lv297.travel_agency.database.dao.hibernateDAOImpls;
+package com.lv297.travel_agency.repository.impls;
 
-import com.lv297.travel_agency.database.HibernateUtil;
-import com.lv297.travel_agency.database.dao.daoAPI.RoomDAO;
+import com.lv297.travel_agency.repository.api.RoomDAO;
 import com.lv297.travel_agency.entities.Room;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 
+@Repository
+@Transactional
 public class RoomHibernateDAOImpl extends ElementDAO<Room, Integer> implements RoomDAO {
 
-    RoomHibernateDAOImpl() {
+    public RoomHibernateDAOImpl() {
         super(Room.class);
     }
 
@@ -19,8 +21,7 @@ public class RoomHibernateDAOImpl extends ElementDAO<Room, Integer> implements R
     @Override
     public List<Room> findFreeRoomInHotelInDate(String hotelName, String date) {
         List rooms;
-        EntityManager manager = HibernateUtil.getEntityManager();
-        Query query = manager.createQuery("SELECT room FROM Room room " +
+        Query query = super.entityManager.createQuery("SELECT room FROM Room room " +
                 "WHERE room.hotel.name=:hotelName AND " +
                 "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +
                                     "WHERE booking.bookingTo>DATE(:date) AND " +
@@ -34,10 +35,8 @@ public class RoomHibernateDAOImpl extends ElementDAO<Room, Integer> implements R
 
     @Override
     public List<Room> findFreeRoomInHotelInDateRange(String hotelName, String dateFrom, String dateTo) {
-
         List rooms;
-        EntityManager manager = HibernateUtil.getEntityManager();
-        Query query = manager.createQuery("SELECT room FROM Room room " +
+        Query query = super.entityManager.createQuery("SELECT room FROM Room room " +
                 "WHERE room.hotel.name=:hotelName AND " +
                 "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +
                 "WHERE ((booking.bookingTo>DATE(:dateFrom) AND " +
