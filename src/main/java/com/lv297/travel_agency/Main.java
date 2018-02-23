@@ -20,6 +20,7 @@ public class Main {
 
         for(Country country: list) {
             System.out.println(country);
+            System.out.println();
         }
     }
 }
