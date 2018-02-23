@@ -14,6 +14,7 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         ApplicationContext context = new AnnotationConfigApplicationContext(PersistenceContext.class);
         CountryService countryDao = context.getBean(CountryServiceImpl.class);
+        countryDao.deleteCountryById(1);
 
         List<Country> list = countryDao.getAllCountries();
 
