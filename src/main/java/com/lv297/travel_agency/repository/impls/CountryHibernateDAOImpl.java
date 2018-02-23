@@ -1,5 +1,6 @@
 package com.lv297.travel_agency.repository.impls;
 
+import com.lv297.travel_agency.entities.Visa;
 import com.lv297.travel_agency.repository.api.CountryDAO;
 import com.lv297.travel_agency.entities.Country;
 import org.springframework.stereotype.Repository;
@@ -44,5 +45,15 @@ public class CountryHibernateDAOImpl implements CountryDAO {
         Query query = entityManager.createQuery("from " + Country.class.getSimpleName());
         list = query.getResultList();
         return list;
+    }
+
+    @Override
+    public int numberVisas(String name) {
+        return 0;
+    }
+
+    @Override
+    public List<Visa> visasForCountry(String name) {
+        return null;
     }
 }

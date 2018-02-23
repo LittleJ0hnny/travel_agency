@@ -22,7 +22,7 @@ import java.util.Properties;
 @PropertySource("classpath:/com/lv297/travel_agency/configuration/properties/application.properties")
 @EnableJpaRepositories(basePackages = "com.lv297.travel_agency.repository.impls")
 @EnableTransactionManagement
-@ComponentScan("com.lv297.travel_agency.repository.impls")
+@ComponentScan("com.lv297.travel_agency.repository")
 public class PersistenceContext {
 
     @Bean

@@ -8,20 +8,45 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-public class HotelHibernateDAOImpl extends ElementDAO<Hotel, Integer> implements HotelDAO {
+public class HotelHibernateDAOImpl implements HotelDAO {
 
-    public HotelHibernateDAOImpl() {
-        super(Hotel.class);
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Override
+    public Hotel update(Hotel entity) {
+        return entityManager.merge(entity);
+    }
+
+    @Override
+    public void save(Hotel entity) {
+
+    }
+
+    @Override
+    public void delete(Hotel entity) {
+
+    }
+
+    @Override
+    public Hotel find(Integer id) {
+        return null;
+    }
+
+    @Override
+    public List<Hotel> findAll() {
+        return null;
     }
 
     @Override
     public List<Hotel> findHotelsByCityName(String cityName) {
         City city;
-        Query query = super.entityManager.createQuery("SELECT city FROM City city WHERE city.name=:name");
+        Query query = entityManager.createQuery("SELECT city FROM City city WHERE city.name=:name");
         query.setParameter("name", cityName);
         city = (City) query.getSingleResult();
         if (city == null) {
@@ -34,7 +59,7 @@ public class HotelHibernateDAOImpl extends ElementDAO<Hotel, Integer> implements
     @Override
     public List<Hotel> findFreeHotelInDate(String cityName, String date) {
         List hotels;
-        Query query = super.entityManager.createQuery("SELECT DISTINCT room.hotel FROM Room room " +
+        Query query = entityManager.createQuery("SELECT DISTINCT room.hotel FROM Room room " +
                 "WHERE room.hotel.city.name=:cityName AND " +
                 "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +
                 "WHERE booking.bookingTo>DATE(:date) AND " +
@@ -48,9 +73,8 @@ public class HotelHibernateDAOImpl extends ElementDAO<Hotel, Integer> implements
 
     @Override
     public List<Hotel> findFreeHotelInDateRange(String cityName, String dateFrom, String dateTo) {
-
         List hotels;
-        Query query = super.entityManager.createQuery("SELECT DISTINCT room.hotel FROM Room room " +
+        Query query = entityManager.createQuery("SELECT DISTINCT room.hotel FROM Room room " +
                 "WHERE room.hotel.city.name=:cityName AND " +
                 "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +
                 "WHERE ((booking.bookingTo>DATE(:dateFrom) AND " +
@@ -72,7 +96,7 @@ public class HotelHibernateDAOImpl extends ElementDAO<Hotel, Integer> implements
     @Override
     public List<Client> clients(String hotelName) {
         List clients;
-        Query query = super.entityManager.createQuery("SELECT DISTINCT booking.client FROM Booking booking " +
+        Query query = entityManager.createQuery("SELECT DISTINCT booking.client FROM Booking booking " +
                 "WHERE booking.hotel.name=:hotelName");
         query.setParameter("hotelName",hotelName);
         clients = query.getResultList();
@@ -82,7 +106,7 @@ public class HotelHibernateDAOImpl extends ElementDAO<Hotel, Integer> implements
     @Override
     public int numberClients(String hotelName) {
         int number;
-        Query query = super.entityManager.createQuery("SELECT COUNT(DISTINCT booking.client) FROM Booking booking " +
+        Query query = entityManager.createQuery("SELECT COUNT(DISTINCT booking.client) FROM Booking booking " +
                 "WHERE booking.hotel.name=:hotelName");
         query.setParameter("hotelName",hotelName);
         number = (int)(long)query.getSingleResult();
@@ -92,7 +116,7 @@ public class HotelHibernateDAOImpl extends ElementDAO<Hotel, Integer> implements
     @Override
     public double averageBookingTime(String hotelName) {
         double averageTime;
-        Query query = super.entityManager.createQuery("SELECT AVG(booking.bookingTo-booking.bookingFrom) " +
+        Query query = entityManager.createQuery("SELECT AVG(booking.bookingTo-booking.bookingFrom) " +
                 "FROM Booking booking " +
                 "WHERE booking.hotel.name=:hotelName");
         query.setParameter("hotelName",hotelName);
@@ -103,7 +127,7 @@ public class HotelHibernateDAOImpl extends ElementDAO<Hotel, Integer> implements
     @Override
     public List<Object> statistic() {
         List statistic;
-        Query query = super.entityManager.createQuery("SELECT booking.hotel, COUNT(DISTINCT booking.client), " +
+        Query query = entityManager.createQuery("SELECT booking.hotel, COUNT(DISTINCT booking.client), " +
                 "AVG(booking.bookingTo-booking.bookingFrom) FROM Booking booking " +
                 "GROUP BY booking.hotel");
 //        Query query = entityManager.createQuery("SELECT booking.hotel,  booking.client, " +
@@ -112,4 +136,6 @@ public class HotelHibernateDAOImpl extends ElementDAO<Hotel, Integer> implements
         statistic = query.getResultList();
         return statistic;
     }
+
+
 }

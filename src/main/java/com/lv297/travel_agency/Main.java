@@ -13,20 +13,17 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-<<<<<<< HEAD
         ApplicationContext context = new AnnotationConfigApplicationContext(PersistenceContext.class);
         CountryDAO countryDao = context.getBean(CountryHibernateDAOImpl.class);
 
-        countryDao.delete(countryDao.find(1));
 
         List<Country> list = countryDao.findAll();
-=======
+
         DAOFactory daoFactory = DAOFactory.getInstance();
 
         CountryDAO countryDAO = daoFactory.getCountryHibernateDAO();
 
         List<Country> list = countryDAO.findAll();
->>>>>>> 6c40e35ce762d05fce45d89cd0c021e93f740e33
 
         for(Country country: list) {
             System.out.println(country);
