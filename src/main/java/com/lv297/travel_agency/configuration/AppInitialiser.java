@@ -5,7 +5,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 /**
  * Created by ivan on 22.02.18.
  */
-/*public class AppInitialiser extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class AppInitialiser extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{PersistenceContext.class};
@@ -20,4 +20,4 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
-}*/
+}
