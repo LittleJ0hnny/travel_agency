@@ -8,9 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ivan on 22.02.18.
@@ -75,6 +80,31 @@ public class MainController {
         }else {
             hotels = hotelService.getAllHotels();
         }
+        model.addObject("cityId",id);
+        model.addObject("todayDate", LocalDate.now());
+        model.addObject("hotels", hotels);
+        model.addObject("tableName","Hotels");
+        return model;
+    }
+
+    @RequestMapping(value = "/hotels/findFreeHotel", method = RequestMethod.POST)
+    public ModelAndView findFreeHotel(@RequestParam String From, String To, int cityId){
+        LocalDate dateFrom = LocalDate.parse(From);
+        LocalDate dateTo = LocalDate.parse(To);
+
+
+        if (dateFrom.toEpochDay()>dateTo.toEpochDay()){
+            return getHotels(cityId);
+        }
+        List hotels;
+        ModelAndView model = new ModelAndView("ShowHotels");
+        if (dateFrom.equals(dateTo)){
+            hotels = hotelService.findFreeHotelInDate(cityId,dateFrom);
+        }else{
+            hotels = hotelService.findFreeHotelInDateRange(cityId,dateFrom,dateTo);
+        }
+        model.addObject("cityId",cityId);
+        model.addObject("todayDate", LocalDate.now());
         model.addObject("hotels", hotels);
         model.addObject("tableName","Hotels");
         return model;

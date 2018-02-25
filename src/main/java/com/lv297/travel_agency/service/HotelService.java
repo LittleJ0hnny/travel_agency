@@ -13,6 +13,8 @@ public interface HotelService {
     Hotel getHotelById(int id);
     List<Hotel> getAllHotels();
     List<Hotel> getAllHotelsForCity(int id);
+    List<Hotel> findFreeHotelInDate(int cityId, LocalDate date);
+    List<Hotel> findFreeHotelInDateRange(int cityId, LocalDate dateFrom, LocalDate dateTo);
     List<Room> findFreeRoomInHotelInDate(Hotel hotel, LocalDate date);
     List<Room> findFreeRoomInHotelInDateRange(Hotel hotel, LocalDate dateFrom, LocalDate dateTo);
 }

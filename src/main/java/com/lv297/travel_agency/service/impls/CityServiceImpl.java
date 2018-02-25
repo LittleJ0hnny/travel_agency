@@ -48,15 +48,6 @@ public class CityServiceImpl implements CityService {
         return cityRepository.findAll();
     }
 
-    @Override
-    public List<Hotel> findFreeHotelInDate(City city, LocalDate date) {
-        return cityRepository.findFreeHotelInDate(city, date);
-    }
-
-    @Override
-    public List<Hotel> findFreeHotelInDateRange(City city, LocalDate dateFrom, LocalDate dateTo) {
-        return cityRepository.findFreeHotelInDateRange(city, dateFrom, dateTo);
-    }
 
     @Override
     public List<City> getAllCitiesForCountry(int countryId) {

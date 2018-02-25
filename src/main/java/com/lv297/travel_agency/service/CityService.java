@@ -15,6 +15,5 @@ public interface CityService {
     void deleteCityById(int id);
     List<City> getAllCities();
     List<City> getAllCitiesForCountry(int countryId);
-    List<Hotel> findFreeHotelInDate(City city, LocalDate date);
-    List<Hotel> findFreeHotelInDateRange(City city, LocalDate dateFrom, LocalDate dateTo);
+
 }
