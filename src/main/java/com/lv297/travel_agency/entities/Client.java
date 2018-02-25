@@ -13,6 +13,8 @@ public class Client {
     private String lastname;
     private Date bithday;
     private String citizenship;
+    private String email;
+    private String password;
     private List<Visa> visas;
 
     @Id
@@ -60,6 +62,24 @@ public class Client {
 
     public void setCitizenship(String citizenship) {
         this.citizenship = citizenship;
+    }
+
+    @Column(name = "email", nullable = false, unique = true, length = 100)
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Column(name = "password", nullable = false, length = 16)
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

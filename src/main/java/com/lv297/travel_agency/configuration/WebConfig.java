@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * Created by ivan on 22.02.18.
  */
 
-@Configuration
+/*@Configuration
 @EnableWebMvc
 @ComponentScan("com.lv297.travel_agency.controllers")
 public class WebConfig extends WebMvcConfigurerAdapter {
@@ -28,4 +28,4 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
 
-}
+}*/

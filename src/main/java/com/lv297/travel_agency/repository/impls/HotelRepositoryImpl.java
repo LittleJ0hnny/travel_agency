@@ -1,43 +1,48 @@
-package com.lv297.travel_agency.repository.hibernateDAOImpls;
+package com.lv297.travel_agency.repository.impls;
 
-
-import com.lv297.travel_agency.database.dao.daoAPI.RoomDAO;
+import com.lv297.travel_agency.entities.City;
+import com.lv297.travel_agency.entities.Hotel;
 import com.lv297.travel_agency.entities.Room;
+import com.lv297.travel_agency.repository.HotelRepository;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public class RoomHibernateDAOImpl extends ElementDAO<Room, Integer> implements RoomDAO {
+@Transactional(readOnly = true)
+public class HotelRepositoryImpl extends SimpleJpaRepository<Hotel, Integer> implements HotelRepository {
+    private final EntityManager entityManager;
 
-    RoomHibernateDAOImpl() {
-        super(Room.class);
+    public HotelRepositoryImpl(EntityManager entityManager) {
+        super(Hotel.class, entityManager);
+        this.entityManager = entityManager;
     }
 
-
     @Override
-    public List<Room> findFreeRoomInHotelInDate(String hotelName, LocalDate date) {
+    public List<Room> findFreeRoomInHotelInDate(Hotel hotel, LocalDate date) {
         List rooms;
-        Query query = entityManagerFactory.createEntityManager().createQuery("SELECT room FROM Room room " +
-                "WHERE room.hotel.name=:hotelName AND " +
+        Query query = entityManager.createQuery("SELECT room FROM Room room " +
+                "WHERE room.hotel.id=:id AND " +
                 "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +
-                                    "WHERE booking.bookingTo>DATE(:date) AND " +
-                                            "booking.bookingFrom<=DATE(:date) AND " +
-                                            "booking.hotel.name=:hotelName)");
-        query.setParameter("hotelName", hotelName);
+                "WHERE booking.bookingTo>DATE(:date) AND " +
+                "booking.bookingFrom<=DATE(:date) AND " +
+                "booking.hotel.id=:id)");
+        query.setParameter("id", hotel.getId());
         query.setParameter("date", date.toString());
         rooms = query.getResultList();
         return rooms;
     }
 
     @Override
-    public List<Room> findFreeRoomInHotelInDateRange(String hotelName, LocalDate dateFrom, LocalDate dateTo) {
-
+    public List<Room> findFreeRoomInHotelInDateRange(Hotel hotel, LocalDate dateFrom, LocalDate dateTo) {
         List rooms;
-        Query query = entityManagerFactory.createEntityManager().createQuery("SELECT room FROM Room room " +
-                "WHERE room.hotel.name=:hotelName AND " +
+        Query query = entityManager.createQuery("SELECT room FROM Room room " +
+                "WHERE room.hotel.id=:id AND " +
                 "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +
                 "WHERE ((booking.bookingTo>DATE(:dateFrom) AND " +
                 "booking.bookingFrom<=DATE(:dateFrom)) OR " +
@@ -47,8 +52,8 @@ public class RoomHibernateDAOImpl extends ElementDAO<Room, Integer> implements R
                 "DATE(:dateFrom)<booking.bookingTo AND " +
                 "DATE(:dateTo)>booking.bookingFrom AND " +
                 "DATE(:dateTo)>=booking.bookingTo)) AND " +
-                "booking.hotel.name=:hotelName)");
-        query.setParameter("hotelName", hotelName);
+                "booking.hotel.id=:id)");
+        query.setParameter("id", hotel.getId());
         query.setParameter("dateFrom", dateFrom.toString());
         query.setParameter("dateTo", dateTo.toString());
         rooms = query.getResultList();
@@ -56,7 +61,7 @@ public class RoomHibernateDAOImpl extends ElementDAO<Room, Integer> implements R
     }
 
     @Override
-    public List<Object> usingRoomsForHotelInDateRange(String hotelName, LocalDate dateFrom, LocalDate dateTo) {
+    public List<Object> usingRoomsForHotelInDateRange(Hotel hotel, LocalDate dateFrom, LocalDate dateTo) {
         List usingRooms;
 
 //        Query query = entityManager.createQuery("SELECT k.booking.room, k.dat FROM" +

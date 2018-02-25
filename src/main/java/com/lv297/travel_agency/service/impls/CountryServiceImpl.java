@@ -14,13 +14,23 @@ public class CountryServiceImpl implements CountryService {
     private CountryRepository countryRepository;
 
     @Override
-    public Country getCountryById(int id) {
-        return countryRepository.getOne(id);
+    public Country updateCountry(Country country) {
+        return null;
     }
 
     @Override
-    public void deleteCountryById(int id) {
-        countryRepository.deleteById(id);
+    public void deleteCountry(Country country) {
+        countryRepository.delete(country);
+    }
+
+    @Override
+    public void saveCountry(Country country) {
+        countryRepository.save(country);
+    }
+
+    @Override
+    public Country getCountryById(int id) {
+        return countryRepository.getOne(id);
     }
 
     @Override
