@@ -10,4 +10,5 @@ public interface CountryService {
     void saveCountry(Country country);
     Country getCountryById(int id);
     List<Country> getAllCountries();
+    void deleteCountryById(int id);
 }

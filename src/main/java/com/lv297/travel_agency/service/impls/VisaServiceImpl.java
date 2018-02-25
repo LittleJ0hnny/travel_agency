@@ -52,6 +52,19 @@ public class VisaServiceImpl implements VisaService {
     }
 
     @Override
+    public void deleteVisaById(int id) {
+        Visa visa = getVisaById(id);
+        if(visa!=null){
+            deleteVisa(visa);
+        }
+    }
+
+    @Override
+    public List<Visa> getAllVisasForCountry(int countryId) {
+        return visaRepository.getAllVisasForCountry(countryId);
+    }
+
+    @Override
     public List<Visa> visasForClient(Client client) {
         return visaRepository.visasForClient(client);
     }

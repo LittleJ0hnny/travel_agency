@@ -23,6 +23,16 @@ public class CityRepositoryImpl extends SimpleJpaRepository<City, Integer> imple
     }
 
     @Override
+    public List<City> getAllCitiesForCountry(int countryId) {
+        List cities;
+        Query query = entityManager.createQuery("SELECT city FROM City city " +
+                "WHERE city.country.id=:id");
+        query.setParameter("id", countryId);
+        cities = query.getResultList();
+        return cities;
+    }
+
+    @Override
     public List<Hotel> findFreeHotelInDate(City city, LocalDate date) {
         List hotels;
         Query query = entityManager.createQuery("SELECT DISTINCT room.hotel FROM Room room " +

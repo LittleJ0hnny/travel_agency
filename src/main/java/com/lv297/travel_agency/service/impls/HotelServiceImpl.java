@@ -41,6 +41,11 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
+    public List<Hotel> getAllHotelsForCity(int id) {
+        return hotelRepository.getAllHotelsForCity(id);
+    }
+
+    @Override
     public List<Room> findFreeRoomInHotelInDate(Hotel hotel, LocalDate date) {
         return hotelRepository.findFreeRoomInHotelInDate(hotel, date);
     }

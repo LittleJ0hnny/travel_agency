@@ -1,6 +1,7 @@
 package com.lv297.travel_agency.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Cacheable
@@ -10,13 +11,13 @@ public class Visa {
     private int id;
     private Client client;
     private Country country;
-    private Date validFrom;
-    private Date validTo;
-    private Date lastTimeUsed;
+    private LocalDate validFrom;
+    private LocalDate validTo;
+    private LocalDate lastTimeUsed;
 
     public Visa() {}
 
-    public Visa(int id, Client client, Country country, Date validFrom, Date validTo) {
+    public Visa(int id, Client client, Country country, LocalDate validFrom, LocalDate validTo) {
         this.id = id;
         this.client = client;
         this.country = country;
@@ -54,29 +55,29 @@ public class Visa {
     }
 
     @Column(name = "valid_from", nullable = false)
-    public Date getValidFrom() {
+    public LocalDate getValidFrom() {
         return validFrom;
     }
 
-    public void setValidFrom(Date validFrom) {
+    public void setValidFrom(LocalDate validFrom) {
         this.validFrom = validFrom;
     }
 
     @Column(name = "valid_to", nullable = false)
-    public Date getValidTo() {
+    public LocalDate getValidTo() {
         return validTo;
     }
 
-    public void setValidTo(Date validTo) {
+    public void setValidTo(LocalDate validTo) {
         this.validTo = validTo;
     }
 
     @Column(name = "last_time_used", nullable = false)
-    public Date getLastTimeUsed() {
+    public LocalDate getLastTimeUsed() {
         return lastTimeUsed;
     }
 
-    public void setLastTimeUsed(Date lastTimeUsed) {
+    public void setLastTimeUsed(LocalDate lastTimeUsed) {
         this.lastTimeUsed = lastTimeUsed;
     }
 

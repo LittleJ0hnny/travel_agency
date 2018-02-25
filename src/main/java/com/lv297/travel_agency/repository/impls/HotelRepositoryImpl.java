@@ -24,6 +24,16 @@ public class HotelRepositoryImpl extends SimpleJpaRepository<Hotel, Integer> imp
     }
 
     @Override
+    public List<Hotel> getAllHotelsForCity(int id) {
+        List hotels;
+        Query query = entityManager.createQuery("SELECT hotel FROM Hotel hotel " +
+                "WHERE hotel.city.id=:id");
+        query.setParameter("id", id);
+        hotels = query.getResultList();
+        return hotels;
+    }
+
+    @Override
     public List<Room> findFreeRoomInHotelInDate(Hotel hotel, LocalDate date) {
         List rooms;
         Query query = entityManager.createQuery("SELECT room FROM Room room " +

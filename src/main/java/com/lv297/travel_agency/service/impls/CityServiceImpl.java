@@ -36,6 +36,14 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
+    public void deleteCityById(int id) {
+        City city = getCityById(id);
+        if (city!=null) {
+            deleteCity(city);
+        }
+    }
+
+    @Override
     public List<City> getAllCities() {
         return cityRepository.findAll();
     }
@@ -48,5 +56,10 @@ public class CityServiceImpl implements CityService {
     @Override
     public List<Hotel> findFreeHotelInDateRange(City city, LocalDate dateFrom, LocalDate dateTo) {
         return cityRepository.findFreeHotelInDateRange(city, dateFrom, dateTo);
+    }
+
+    @Override
+    public List<City> getAllCitiesForCountry(int countryId) {
+        return cityRepository.getAllCitiesForCountry(countryId);
     }
 }

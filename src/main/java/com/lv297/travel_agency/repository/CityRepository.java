@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface CityRepository extends JpaRepository<City, Integer> {
+    List<City> getAllCitiesForCountry(int countryId);
     List<Hotel> findFreeHotelInDate(City city, LocalDate date);
     List<Hotel> findFreeHotelInDateRange(City city, LocalDate dateFrom, LocalDate dateTo);
 }

@@ -12,6 +12,7 @@ public interface HotelService {
     void saveHotel(Hotel hotel);
     Hotel getHotelById(int id);
     List<Hotel> getAllHotels();
+    List<Hotel> getAllHotelsForCity(int id);
     List<Room> findFreeRoomInHotelInDate(Hotel hotel, LocalDate date);
     List<Room> findFreeRoomInHotelInDateRange(Hotel hotel, LocalDate dateFrom, LocalDate dateTo);
 }

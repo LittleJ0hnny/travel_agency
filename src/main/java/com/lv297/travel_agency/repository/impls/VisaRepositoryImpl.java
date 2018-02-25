@@ -46,6 +46,16 @@ public class VisaRepositoryImpl extends SimpleJpaRepository<Visa, Integer> imple
     }
 
     @Override
+    public List<Visa> getAllVisasForCountry(int countryId) {
+        List visas;
+        Query query = entityManager.createQuery("SELECT visa FROM Visa visa " +
+                "WHERE visa.country.id=:id");
+        query.setParameter("id", countryId);
+        visas = query.getResultList();
+        return visas;
+    }
+
+    @Override
     public List<Visa> visasForClient(Client client) {
         List visas;
         Query query = entityManager.createQuery("SELECT visa FROM Visa visa WHERE visa.client.id=:id");
