@@ -55,14 +55,6 @@ public class HotelServiceImpl implements HotelService {
         return hotelRepository.findFreeHotelInDateRange(cityId, dateFrom, dateTo);
     }
 
-    @Override
-    public List<Room> findFreeRoomInHotelInDate(Hotel hotel, LocalDate date) {
-        return hotelRepository.findFreeRoomInHotelInDate(hotel, date);
-    }
 
-    @Override
-    public List<Room> findFreeRoomInHotelInDateRange(Hotel hotel, LocalDate dateFrom, LocalDate dateTo) {
-        return hotelRepository.findFreeRoomInHotelInDateRange(hotel, dateFrom, dateTo);
-    }
 
 }

@@ -34,43 +34,6 @@ public class HotelRepositoryImpl extends SimpleJpaRepository<Hotel, Integer> imp
     }
 
     @Override
-    public List<Room> findFreeRoomInHotelInDate(Hotel hotel, LocalDate date) {
-        List rooms;
-        Query query = entityManager.createQuery("SELECT room FROM Room room " +
-                "WHERE room.hotel.id=:id AND " +
-                "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +
-                "WHERE booking.bookingTo>DATE(:date) AND " +
-                "booking.bookingFrom<=DATE(:date) AND " +
-                "booking.hotel.id=:id)");
-        query.setParameter("id", hotel.getId());
-        query.setParameter("date", date.toString());
-        rooms = query.getResultList();
-        return rooms;
-    }
-
-    @Override
-    public List<Room> findFreeRoomInHotelInDateRange(Hotel hotel, LocalDate dateFrom, LocalDate dateTo) {
-        List rooms;
-        Query query = entityManager.createQuery("SELECT room FROM Room room " +
-                "WHERE room.hotel.id=:id AND " +
-                "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +
-                "WHERE ((booking.bookingTo>DATE(:dateFrom) AND " +
-                "booking.bookingFrom<=DATE(:dateFrom)) OR " +
-                "(booking.bookingTo>=DATE(:dateTo) AND " +
-                "booking.bookingFrom<DATE(:dateTo)) OR " +
-                "(DATE(:dateFrom)<=booking.bookingFrom AND " +
-                "DATE(:dateFrom)<booking.bookingTo AND " +
-                "DATE(:dateTo)>booking.bookingFrom AND " +
-                "DATE(:dateTo)>=booking.bookingTo)) AND " +
-                "booking.hotel.id=:id)");
-        query.setParameter("id", hotel.getId());
-        query.setParameter("dateFrom", dateFrom.toString());
-        query.setParameter("dateTo", dateTo.toString());
-        rooms = query.getResultList();
-        return rooms;
-    }
-
-    @Override
     public List<Hotel> findFreeHotelInDate(int cityId, LocalDate date) {
         List hotels;
         Query query = entityManager.createQuery("SELECT DISTINCT room.hotel FROM Room room " +

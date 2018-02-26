@@ -10,31 +10,32 @@
     <h3>${tableName}</h3>
     <br>
 
-    <c:if test = "${cityId > 0}">
+    <c:if test = "${hotelId > 0}">
         <form action="http://localhost:8080/hotels/findFreeHotel" method="post">
         To find free hotel please choose date
           choose the date of arrival:
           <input type="date" name="From" min="${todayDate}"><br>
           choose the date of departure:
           <input type="date" name="To" min="${todayDate}"><br>
-          <input type="hidden" name="cityId" value="${cityId}">
+          <input type="hidden" name="hotelId" value="${hotelId}">
           <input type="submit" value="Find">
         </form>
     </c:if>
                <table>
                     <tr>
-                        <th>Name Country</th>
                         <th>Name City</th>
-                        <th>Number Rooms</th>
-                        <th>Rooms</th>
-
+                        <th>Name Hotel</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                        <th>Number bed</th>
                     </tr>
-                    <c:forEach var="hotel" items="${hotels}">
+                    <c:forEach var="room" items="${rooms}">
                             <tr>
-                                <td>${hotel.city.name}</td>
-                                <td>${hotel.name}</td>
-                                <td>${hotel.rooms.size()}</td>
-                                <td><a href="http://localhost:8080/rooms/${hotel.id}">Show all rooms for this hotel</a></td>
+                                <td>${room.hotel.city.name}</td>
+                                <td>${room.hotel.name}</td>
+                                <td>${room.type}</td>
+                                <td>${room.price}</td>
+                                <td>${room.num_of_beds}</td>
                             </tr>
                     </c:forEach>
                 </table>

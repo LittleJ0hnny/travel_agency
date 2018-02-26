@@ -6,6 +6,7 @@ import com.lv297.travel_agency.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -36,5 +37,20 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public List<Room> getAllRooms() {
         return roomRepository.findAll();
+    }
+
+    @Override
+    public List<Room> getAllRoomsForHotel(int id) {
+        return roomRepository.getAllRoomsForHotel(id);
+    }
+
+    @Override
+    public List<Room> findFreeRoomInHotelInDate(int hotelId, LocalDate date) {
+        return roomRepository.findFreeRoomInHotelInDate(hotelId, date);
+    }
+
+    @Override
+    public List<Room> findFreeRoomInHotelInDateRange(int hotelId, LocalDate dateFrom, LocalDate dateTo) {
+        return roomRepository.findFreeRoomInHotelInDateRange(hotelId, dateFrom, dateTo);
     }
 }
