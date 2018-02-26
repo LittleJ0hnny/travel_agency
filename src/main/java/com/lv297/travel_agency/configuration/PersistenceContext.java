@@ -1,8 +1,5 @@
 package com.lv297.travel_agency.configuration;
 
-import com.lv297.travel_agency.entities.Country;
-import com.lv297.travel_agency.repository.api.CountryDAO;
-import com.lv297.travel_agency.repository.impls.CountryHibernateDAOImpl;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.*;
@@ -12,17 +9,17 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@PropertySource("classpath:/com/lv297/travel_agency/configuration/properties/application.properties")
-@EnableJpaRepositories(basePackages = "com.lv297.travel_agency.repository.impls")
 @EnableTransactionManagement
-@ComponentScan("com.lv297.travel_agency.repository")
+@ComponentScan("com.lv297.travel_agency")
+@PropertySource("classpath:application.properties")
+@EnableJpaRepositories(basePackages = "com.lv297.travel_agency.repository")
+@ComponentScan(basePackages = {"com.lv297.travel_agency"})
 public class PersistenceContext {
 
     @Bean
@@ -53,6 +50,8 @@ public class PersistenceContext {
 
         jpaProperties.put("hibernate.format_sql", env.getRequiredProperty("hibernate.format_sql"));
 
+        jpaProperties.put("hibernate.enable_lazy_load_no_trans", env.getRequiredProperty("hibernate.enable_lazy_load_no_trans"));
+
         entityManagerFactoryBean.setJpaProperties(jpaProperties);
 
         return entityManagerFactoryBean;
@@ -64,4 +63,5 @@ public class PersistenceContext {
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }
+
 }
