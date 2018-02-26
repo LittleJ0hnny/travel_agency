@@ -24,25 +24,35 @@ public class HotelRepositoryImpl extends SimpleJpaRepository<Hotel, Integer> imp
     }
 
     @Override
-    public List<Room> findFreeRoomInHotelInDate(Hotel hotel, LocalDate date) {
-        List rooms;
-        Query query = entityManager.createQuery("SELECT room FROM Room room " +
-                "WHERE room.hotel.id=:id AND " +
-                "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +
-                "WHERE booking.bookingTo>DATE(:date) AND " +
-                "booking.bookingFrom<=DATE(:date) AND " +
-                "booking.hotel.id=:id)");
-        query.setParameter("id", hotel.getId());
-        query.setParameter("date", date.toString());
-        rooms = query.getResultList();
-        return rooms;
+    public List<Hotel> getAllHotelsForCity(int id) {
+        List hotels;
+        Query query = entityManager.createQuery("SELECT hotel FROM Hotel hotel " +
+                "WHERE hotel.city.id=:id");
+        query.setParameter("id", id);
+        hotels = query.getResultList();
+        return hotels;
     }
 
     @Override
-    public List<Room> findFreeRoomInHotelInDateRange(Hotel hotel, LocalDate dateFrom, LocalDate dateTo) {
-        List rooms;
-        Query query = entityManager.createQuery("SELECT room FROM Room room " +
-                "WHERE room.hotel.id=:id AND " +
+    public List<Hotel> findFreeHotelInDate(int cityId, LocalDate date) {
+        List hotels;
+        Query query = entityManager.createQuery("SELECT DISTINCT room.hotel FROM Room room " +
+                "WHERE room.hotel.city.id=:id AND " +
+                "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +
+                "WHERE booking.bookingTo>DATE(:date) AND " +
+                "booking.bookingFrom<=DATE(:date) AND " +
+                "booking.hotel.city.id=:id)");
+        query.setParameter("id", cityId);
+        query.setParameter("date", date.toString());
+        hotels = query.getResultList();
+        return hotels;
+    }
+
+    @Override
+    public List<Hotel> findFreeHotelInDateRange(int cityId, LocalDate dateFrom, LocalDate dateTo) {
+        List hotels;
+        Query query = entityManager.createQuery("SELECT DISTINCT room.hotel FROM Room room " +
+                "WHERE room.hotel.city.id=:id AND " +
                 "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +
                 "WHERE ((booking.bookingTo>DATE(:dateFrom) AND " +
                 "booking.bookingFrom<=DATE(:dateFrom)) OR " +
@@ -52,12 +62,35 @@ public class HotelRepositoryImpl extends SimpleJpaRepository<Hotel, Integer> imp
                 "DATE(:dateFrom)<booking.bookingTo AND " +
                 "DATE(:dateTo)>booking.bookingFrom AND " +
                 "DATE(:dateTo)>=booking.bookingTo)) AND " +
-                "booking.hotel.id=:id)");
-        query.setParameter("id", hotel.getId());
+                "booking.hotel.city.id=:id)");
+        query.setParameter("id", cityId);
         query.setParameter("dateFrom", dateFrom.toString());
         query.setParameter("dateTo", dateTo.toString());
-        rooms = query.getResultList();
-        return rooms;
+        hotels = query.getResultList();
+        return hotels;
+    }
+
+    @Override
+    public int numberClients(int hotelId) {
+        int number;
+        Query query = entityManager.createQuery("SELECT COUNT(DISTINCT booking.client) FROM Booking booking " +
+                "WHERE booking.hotel.id=:hotelId");
+        query.setParameter("hotelId",hotelId);
+        number = (int)(long)query.getSingleResult();
+        return number;
+    }
+
+
+
+    @Override
+    public List<Object> averageBookingTime(int hotelId) {
+        List bookingsTime;
+        Query query = entityManager.createQuery("SELECT booking.bookingTo, booking.bookingFrom " +
+                "FROM Booking booking " +
+                "WHERE booking.hotel.id=:hotelId");
+        query.setParameter("hotelId",hotelId);
+        bookingsTime = query.getResultList();
+        return bookingsTime;
     }
 
     @Override

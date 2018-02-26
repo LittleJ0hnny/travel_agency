@@ -1,6 +1,7 @@
 package com.lv297.travel_agency.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Cacheable
@@ -11,12 +12,12 @@ public class Booking {
     private Client client;
     private Hotel hotel;
     private Room room;
-    private Date bookingFrom;
-    private Date bookingTo;
+    private LocalDate bookingFrom;
+    private LocalDate bookingTo;
 
     public Booking(){}
 
-    public Booking(int id, Client client, Hotel hotel, Room room, Date bookingFrom, Date bookingTo) {
+    public Booking(int id, Client client, Hotel hotel, Room room, LocalDate bookingFrom, LocalDate bookingTo) {
         this.id = id;
         this.client = client;
         this.hotel = hotel;
@@ -64,20 +65,20 @@ public class Booking {
     }
 
     @Column(name = "booking_from", nullable = false)
-    public Date getBookingFrom() {
+    public LocalDate getBookingFrom() {
         return bookingFrom;
     }
 
-    public void setBookingFrom(Date bookingFrom) {
+    public void setBookingFrom(LocalDate bookingFrom) {
         this.bookingFrom = bookingFrom;
     }
 
     @Column(name = "booking_to", nullable = false)
-    public Date getBookingTo() {
+    public LocalDate getBookingTo() {
         return bookingTo;
     }
 
-    public void setBookingTo(Date bookingTo) {
+    public void setBookingTo(LocalDate bookingTo) {
         this.bookingTo = bookingTo;
     }
 

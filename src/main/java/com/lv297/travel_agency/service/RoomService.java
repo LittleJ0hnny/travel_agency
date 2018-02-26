@@ -2,6 +2,7 @@ package com.lv297.travel_agency.service;
 
 import com.lv297.travel_agency.entities.Room;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface RoomService {
@@ -10,4 +11,7 @@ public interface RoomService {
     void saveRoom(Room room);
     Room getRoomById(int id);
     List<Room> getAllRooms();
+    List<Room> getAllRoomsForHotel(int id);
+    List<Room> findFreeRoomInHotelInDate(int hotelId, LocalDate date);
+    List<Room> findFreeRoomInHotelInDateRange(int hotelId, LocalDate dateFrom, LocalDate dateTo);
 }
