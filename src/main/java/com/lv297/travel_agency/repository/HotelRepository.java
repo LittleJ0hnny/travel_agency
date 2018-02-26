@@ -13,4 +13,6 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
     List<Hotel> findFreeHotelInDate(int cityId, LocalDate date);
     List<Hotel> findFreeHotelInDateRange(int cityId, LocalDate dateFrom, LocalDate dateTo);
     List<Object> usingRoomsForHotelInDateRange(Hotel hotel, LocalDate dateFrom, LocalDate dateTo);
+    int numberClients(int hotelId);
+    List<Object> averageBookingTime(int hotelId);
 }

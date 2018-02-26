@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -55,6 +56,28 @@ public class HotelServiceImpl implements HotelService {
         return hotelRepository.findFreeHotelInDateRange(cityId, dateFrom, dateTo);
     }
 
+    @Override
+    public List<Object[]> hotelsStatistic() {
+        List<Object[]> hotelsStatistic = new ArrayList<>();
+        List<Hotel> hotels = hotelRepository.findAll();
+        for (Hotel hotel : hotels) {
+            double averageTime = 0;
+            LocalDate dateTo;
+            LocalDate dateFrom;
+            List<Object> averageTimes = hotelRepository.averageBookingTime(hotel.getId());
+            if (!averageTimes.isEmpty()) {
+                for (Object o : averageTimes) {
+                    Object[] objects = (Object[]) o;
+                    dateTo = LocalDate.parse( objects[0].toString());
+                    dateFrom = LocalDate.parse(objects[1].toString());
+                    averageTime += dateTo.toEpochDay() - dateFrom.toEpochDay();
+                }
+                averageTime = averageTime / averageTimes.size();
+            }
+            hotelsStatistic.add(new Object[]{hotel,hotelRepository.numberClients(hotel.getId()),averageTime});
+        }
+        return hotelsStatistic;
+    }
 
 
 }

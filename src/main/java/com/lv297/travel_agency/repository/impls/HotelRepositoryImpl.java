@@ -71,6 +71,29 @@ public class HotelRepositoryImpl extends SimpleJpaRepository<Hotel, Integer> imp
     }
 
     @Override
+    public int numberClients(int hotelId) {
+        int number;
+        Query query = entityManager.createQuery("SELECT COUNT(DISTINCT booking.client) FROM Booking booking " +
+                "WHERE booking.hotel.id=:hotelId");
+        query.setParameter("hotelId",hotelId);
+        number = (int)(long)query.getSingleResult();
+        return number;
+    }
+
+
+
+    @Override
+    public List<Object> averageBookingTime(int hotelId) {
+        List bookingsTime;
+        Query query = entityManager.createQuery("SELECT booking.bookingTo, booking.bookingFrom " +
+                "FROM Booking booking " +
+                "WHERE booking.hotel.id=:hotelId");
+        query.setParameter("hotelId",hotelId);
+        bookingsTime = query.getResultList();
+        return bookingsTime;
+    }
+
+    @Override
     public List<Object> usingRoomsForHotelInDateRange(Hotel hotel, LocalDate dateFrom, LocalDate dateTo) {
         List usingRooms;
 

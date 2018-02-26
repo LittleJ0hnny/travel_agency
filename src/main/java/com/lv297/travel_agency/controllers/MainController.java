@@ -76,11 +76,11 @@ public class MainController {
         ModelAndView model = new ModelAndView("ShowHotels");
         if (id!=0){
             hotels = hotelService.getAllHotelsForCity(id);
+            model.addObject("todayDate", LocalDate.now());
         }else {
-            hotels = hotelService.getAllHotels();
+            hotels = hotelService.hotelsStatistic();
         }
         model.addObject("cityId",id);
-        model.addObject("todayDate", LocalDate.now());
         model.addObject("hotels", hotels);
         model.addObject("tableName","Hotels");
         return model;

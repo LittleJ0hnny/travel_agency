@@ -20,14 +20,12 @@
           <input type="hidden" name="cityId" value="${cityId}">
           <input type="submit" value="Find">
         </form>
-    </c:if>
                <table>
                     <tr>
-                        <th>Name Country</th>
                         <th>Name City</th>
+                        <th>Name Hotel</th>
                         <th>Number Rooms</th>
                         <th>Rooms</th>
-
                     </tr>
                     <c:forEach var="hotel" items="${hotels}">
                             <tr>
@@ -38,5 +36,28 @@
                             </tr>
                     </c:forEach>
                 </table>
+    </c:if>
+    <c:if test = "${cityId == 0}">
+                <table>
+                                    <tr>
+                                        <th>Name City</th>
+                                        <th>Name Hotel</th>
+                                        <th>Number Rooms</th>
+                                        <th>Rooms</th>
+                                        <th>Number Clients</th>
+                                        <th>Average booking time</th>
+                                    </tr>
+                                    <c:forEach var="hotel" items="${hotels}">
+                                            <tr>
+                                                <td>${hotel[0].city.name}</td>
+                                                <td>${hotel[0].name}</td>
+                                                <td>${hotel[0].rooms.size()}</td>
+                                                <td><a href="http://localhost:8080/rooms/${hotel[0].id}">Show all rooms for this hotel</a></td>
+                                                <td>${hotel[1]}</td>
+                                                <td>${hotel[2]}</td>
+                                            </tr>
+                                    </c:forEach>
+                </table>
+    </c:if>
     </body>
 </html>
