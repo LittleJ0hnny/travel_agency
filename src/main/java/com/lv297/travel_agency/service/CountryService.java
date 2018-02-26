@@ -5,7 +5,10 @@ import com.lv297.travel_agency.entities.Country;
 import java.util.List;
 
 public interface CountryService {
-    List<Country> getAllCountries();
+    Country updateCountry(Country country);
+    void deleteCountry(Country country);
+    void saveCountry(Country country);
     Country getCountryById(int id);
+    List<Country> getAllCountries();
     void deleteCountryById(int id);
 }

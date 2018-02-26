@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
@@ -19,7 +20,7 @@ import java.util.Properties;
 @ComponentScan("com.lv297.travel_agency")
 @PropertySource("classpath:application.properties")
 @EnableJpaRepositories(basePackages = "com.lv297.travel_agency.repository")
-@ComponentScan(basePackages = {"com.lv297.travel_agency"})
+@ComponentScan("com.lv297.travel_agency")
 public class PersistenceContext {
 
     @Bean
@@ -58,7 +59,7 @@ public class PersistenceContext {
     }
 
     @Bean
-    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;

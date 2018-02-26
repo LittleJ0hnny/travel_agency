@@ -1,12 +1,83 @@
 package com.lv297.travel_agency.service.impls;
 
+import com.lv297.travel_agency.entities.Client;
+import com.lv297.travel_agency.entities.Country;
+import com.lv297.travel_agency.entities.Visa;
 import com.lv297.travel_agency.repository.VisaRepository;
+import com.lv297.travel_agency.service.VisaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class VisaServiceImpl {
+public class VisaServiceImpl implements VisaService {
     @Autowired
     private VisaRepository visaRepository;
+
+    @Override
+    public Visa updateVisa(Visa visa) {
+        return null;
+    }
+
+    @Override
+    public void deleteVisa(Visa visa) {
+        visaRepository.delete(visa);
+    }
+
+    @Override
+    public void saveVisa(Visa visa) {
+        visaRepository.save(visa);
+    }
+
+    @Override
+    public Visa getVisaById(int id) {
+        return visaRepository.getOne(id);
+    }
+
+    @Override
+    public List<Visa> getAllVisas() {
+        return visaRepository.findAll();
+    }
+
+    @Override
+    public int numberVisas(Client client) {
+        return visaRepository.numberVisas(client);
+    }
+
+    @Override
+    public int numberActiveVisas(Client client) {
+        return visaRepository.numberActiveVisas(client);
+    }
+
+    @Override
+    public void deleteVisaById(int id) {
+        Visa visa = getVisaById(id);
+        if(visa!=null){
+            deleteVisa(visa);
+        }
+    }
+
+    @Override
+    public List<Visa> getAllVisasForCountry(int countryId) {
+        return visaRepository.getAllVisasForCountry(countryId);
+    }
+
+    @Override
+    public List<Visa> visasForClient(int clientId) {
+        return visaRepository.visasForClient(clientId);
+    }
+
+    @Override
+    public List<Visa> activeVisasForClient(int clientId) {
+        return visaRepository.activeVisasForClient(clientId);
+    }
+
+    @Override
+    public List<Country> visitedCountries(int clientId) {
+        return visaRepository.visitedCountries(clientId);
+    }
+
 
 }

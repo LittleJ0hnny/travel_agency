@@ -1,6 +1,7 @@
 package com.lv297.travel_agency.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -11,8 +12,10 @@ public class Client {
     private int id;
     private String firstname;
     private String lastname;
-    private Date bithday;
+    private LocalDate bithday;
     private String citizenship;
+    private String email;
+    private String password;
     private List<Visa> visas;
 
     @Id
@@ -45,11 +48,11 @@ public class Client {
     }
 
     @Column(name = "date_birthday", nullable = false)
-    public Date getBithday() {
+    public LocalDate getBithday() {
         return bithday;
     }
 
-    public void setBithday(Date bithday) {
+    public void setBithday(LocalDate bithday) {
         this.bithday = bithday;
     }
 
@@ -60,6 +63,24 @@ public class Client {
 
     public void setCitizenship(String citizenship) {
         this.citizenship = citizenship;
+    }
+
+    @Column(name = "email", nullable = false, unique = true, length = 100)
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Column(name = "password", nullable = false, length = 16)
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
