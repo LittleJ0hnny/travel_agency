@@ -1,6 +1,7 @@
 package com.lv297.travel_agency.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class Client {
     private int id;
     private String firstname;
     private String lastname;
-    private Date bithday;
+    private LocalDate bithday;
     private String citizenship;
     private String email;
     private String password;
@@ -47,11 +48,11 @@ public class Client {
     }
 
     @Column(name = "date_birthday", nullable = false)
-    public Date getBithday() {
+    public LocalDate getBithday() {
         return bithday;
     }
 
-    public void setBithday(Date bithday) {
+    public void setBithday(LocalDate bithday) {
         this.bithday = bithday;
     }
 

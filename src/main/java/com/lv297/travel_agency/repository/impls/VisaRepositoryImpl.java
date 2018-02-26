@@ -56,31 +56,31 @@ public class VisaRepositoryImpl extends SimpleJpaRepository<Visa, Integer> imple
     }
 
     @Override
-    public List<Visa> visasForClient(Client client) {
+    public List<Visa> visasForClient(int clientId) {
         List visas;
         Query query = entityManager.createQuery("SELECT visa FROM Visa visa WHERE visa.client.id=:id");
-        query.setParameter("id", client.getId());
+        query.setParameter("id", clientId);
         visas = query.getResultList();
         return visas;
     }
 
     @Override
-    public List<Visa> activeVisasForClient(Client client) {
+    public List<Visa> activeVisasForClient(int clientId) {
         List visas;
         Query query = entityManager.createQuery("SELECT visa FROM Visa visa " +
                 "WHERE visa.client.id=:id AND visa.validTo > DATE (:curentDate)");
-        query.setParameter("id", client.getId());
+        query.setParameter("id", clientId);
         query.setParameter("curentDate", LocalDate.now().toString());
         visas = query.getResultList();
         return visas;
     }
 
     @Override
-    public List<Country> visitedCountries(Client client) {
+    public List<Country> visitedCountries(int clientId) {
         List visitedCountries;
-        Query query = entityManager.createQuery("SELECT country FROM Visa visa " +
+        Query query = entityManager.createQuery("SELECT visa FROM Visa visa " +
                 "WHERE visa.client.id=:id AND visa.lastTimeUsed != DATE(0000-00-00)");
-        query.setParameter("id", client.getId());
+        query.setParameter("id", clientId);
         visitedCountries = query.getResultList();
         return visitedCountries;
     }

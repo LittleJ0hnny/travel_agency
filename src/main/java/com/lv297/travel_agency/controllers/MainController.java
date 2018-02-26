@@ -29,6 +29,8 @@ public class MainController {
     private HotelService hotelService;
     @Autowired
     private RoomService roomService;
+    @Autowired
+    private ClientService clientService;
 
 
     @RequestMapping("/")
@@ -146,9 +148,39 @@ public class MainController {
         return model;
     }
 
+    @RequestMapping("/clients")
+    public ModelAndView getClients(){
+        List clients = clientService.getAllClients();
+        ModelAndView model = new ModelAndView("ShowClients");
+        model.addObject("clients", clients);
+        model.addObject("tableName","Clients");
+        return model;
+    }
 
+    @RequestMapping("/visitedCountry/{id}")
+    public ModelAndView getVisitedCountriesForClient(@PathVariable int id){
+        ModelAndView model = new ModelAndView("ShowVisitedCountries");
+        List visas;
+        visas = visaService.visitedCountries(id);
+        model.addObject("visas", visas);
+        model.addObject("tableName","Visited Countries");
+        return model;
+    }
 
-
+    @RequestMapping("/clientVisas/{state}/{id}")
+    public ModelAndView getVisasForClient(@PathVariable String state, @PathVariable int id){
+        List visas;
+        ModelAndView model = new ModelAndView("ShowVisas");
+        if (state.equals("active")){
+            visas = visaService.activeVisasForClient(id);
+            model.addObject("tableName","Active client's Visas");
+        }else{
+            visas = visaService.visasForClient(id);
+            model.addObject("tableName","All client's Visas");
+        }
+        model.addObject("visas", visas);
+        return model;
+    }
 
 
 
