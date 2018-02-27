@@ -23,8 +23,20 @@
 
 <body>
 <header id="header">
-    <tiles:insertAttribute name="header" />
+    <tiles:insertAttribute name="header"/>
 </header>
+
+<div>
+    <div class="nav-item dropdown">
+        <tiles:insertAttribute name="navigation"/>
+    </div>
+    <div>
+        <tiles:insertAttribute name="content"/>
+    </div>
+    <div>
+        <tiles:insertAttribute name="input"/>
+    </div>
+</div>
 
 <footer id="footer">
     <tiles:insertAttribute name="footer" />

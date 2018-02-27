@@ -5,10 +5,24 @@
     <definition name="common-definition" template="/WEB-INF/jsp/tiles/layouts/layout.jsp">
         <put-attribute name="title" value=""/>
         <put-attribute name="header" value="/WEB-INF/jsp/tiles/templates/mainHeader.jsp"/>
-        <put-attribute name="footer" value=""/>
+        <put-attribute name="navigation" value=""/>
+        <put-attribute name="content" value=""/>
+        <put-attribute name="dropdown" value=""/>
+        <put-attribute name="input" value=""/>
+        <put-attribute name="create" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/jsp/tiles/templates/mainFooter.jsp"/>
+    </definition>
+    <definition name="managing-template">
+
     </definition>
     <definition name="index" extends="common-definition">
         <put-attribute name="title" value="Welcome Page" />
-        <put-attribute name="footer" value="/WEB-INF/jsp/tiles/templates/mainFooter.jsp"/>
+    </definition>
+    <definition name="countryMain" extends="common-definition">
+        <put-attribute name="title" value="Countries Manager"/>
+        <put-attribute name="navigation" value="/WEB-INF/jsp/components/country/navigation.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/components/country/table.jsp"/>
+        <put-attribute name="dropdown" value="/WEB-INF/jsp/components/country/dropdown.jsp"/>
+        <put-attribute name="input" value="/WEB-INF/jsp/components/country/inputForm.jsp"/>
     </definition>
 </tiles-definitions>
