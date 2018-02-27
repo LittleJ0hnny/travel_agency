@@ -11,7 +11,7 @@
     <br>
 
     <c:if test = "${hotelId > 0}">
-        <form action="http://localhost:8080/hotels/findFreeHotel" method="post">
+        <form action="http://localhost:8080/rooms/findFreeroom" method="post">
         To find free hotel please choose date
           choose the date of arrival:
           <input type="date" name="From" min="${todayDate}"><br>
