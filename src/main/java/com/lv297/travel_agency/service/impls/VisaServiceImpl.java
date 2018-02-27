@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -42,13 +43,13 @@ public class VisaServiceImpl implements VisaService {
     }
 
     @Override
-    public int numberVisas(Client client) {
-        return visaRepository.numberVisas(client);
+    public int numberVisas(int clientId) {
+        return visaRepository.findCountByClient_Id(clientId);
     }
 
     @Override
-    public int numberActiveVisas(Client client) {
-        return visaRepository.numberActiveVisas(client);
+    public int numberActiveVisas(int clientId) {
+        return visaRepository.numberActiveVisas(clientId, LocalDate.now());
     }
 
     @Override
@@ -61,21 +62,21 @@ public class VisaServiceImpl implements VisaService {
 
     @Override
     public List<Visa> getAllVisasForCountry(int countryId) {
-        return visaRepository.getAllVisasForCountry(countryId);
+        return visaRepository.findByCountry_Id(countryId);
     }
 
     @Override
     public List<Visa> visasForClient(int clientId) {
-        return visaRepository.visasForClient(clientId);
+        return visaRepository.findByClient_Id(clientId);
     }
 
     @Override
     public List<Visa> activeVisasForClient(int clientId) {
-        return visaRepository.activeVisasForClient(clientId);
+        return visaRepository.activeVisasForClient(clientId,LocalDate.now());
     }
 
     @Override
-    public List<Country> visitedCountries(int clientId) {
+    public List<Visa> visitedCountries(int clientId) {
         return visaRepository.visitedCountries(clientId);
     }
 

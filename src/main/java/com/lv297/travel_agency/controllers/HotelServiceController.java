@@ -49,11 +49,7 @@ public class HotelServiceController {
         }
         List hotels;
         ModelAndView model = new ModelAndView("ShowHotels");
-        if (dateFrom.equals(dateTo)){
-            hotels = hotelService.findFreeHotelInDate(cityId,dateFrom);
-        }else{
-            hotels = hotelService.findFreeHotelInDateRange(cityId,dateFrom,dateTo);
-        }
+        hotels = hotelService.findFreeHotelInDateRange(cityId,dateFrom,dateTo);
         model.addObject("cityId",cityId);
         model.addObject("todayDate", LocalDate.now());
         model.addObject("hotels", hotels);

@@ -48,11 +48,7 @@ public class RoomServiceController {
         }
         List rooms;
         ModelAndView model = new ModelAndView("ShowRooms");
-        if (dateFrom.equals(dateTo)){
-            rooms = roomService.findFreeRoomInHotelInDate(hotelId,dateFrom);
-        }else{
-            rooms = roomService.findFreeRoomInHotelInDateRange(hotelId,dateFrom,dateTo);
-        }
+        rooms = roomService.findFreeRoomInHotelInDateRange(hotelId,dateFrom,dateTo);
         model.addObject("hotelId",hotelId);
         model.addObject("todayDate", LocalDate.now());
         model.addObject("hotels", rooms);

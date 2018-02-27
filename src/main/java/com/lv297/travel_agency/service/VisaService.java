@@ -12,11 +12,11 @@ public interface VisaService {
     void saveVisa(Visa visa);
     Visa getVisaById(int id);
     List<Visa> getAllVisas();
-    int numberVisas(Client client);
-    int numberActiveVisas(Client client);
+    int numberVisas(int clientId);
+    int numberActiveVisas(int clientId);
     void deleteVisaById(int id);
     List<Visa> getAllVisasForCountry(int countryId);
     List<Visa> visasForClient(int clientId);
     List<Visa> activeVisasForClient(int clientId);
-    List<Country> visitedCountries(int clientId);
+    List<Visa> visitedCountries(int clientId);
 }

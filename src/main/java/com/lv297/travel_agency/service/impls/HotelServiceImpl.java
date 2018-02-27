@@ -1,7 +1,6 @@
 package com.lv297.travel_agency.service.impls;
 
 import com.lv297.travel_agency.entities.Hotel;
-import com.lv297.travel_agency.entities.Room;
 import com.lv297.travel_agency.repository.HotelRepository;
 import com.lv297.travel_agency.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,12 +42,7 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public List<Hotel> getAllHotelsForCity(int id) {
-        return hotelRepository.getAllHotelsForCity(id);
-    }
-
-    @Override
-    public List<Hotel> findFreeHotelInDate(int cityId, LocalDate date) {
-        return hotelRepository.findFreeHotelInDate(cityId, date);
+        return hotelRepository.findByCity_Id(id);
     }
 
     @Override

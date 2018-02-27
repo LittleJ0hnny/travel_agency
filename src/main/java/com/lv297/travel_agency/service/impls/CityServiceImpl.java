@@ -1,13 +1,11 @@
 package com.lv297.travel_agency.service.impls;
 
 import com.lv297.travel_agency.entities.City;
-import com.lv297.travel_agency.entities.Hotel;
 import com.lv297.travel_agency.repository.CityRepository;
 import com.lv297.travel_agency.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -51,6 +49,6 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public List<City> getAllCitiesForCountry(int countryId) {
-        return cityRepository.getAllCitiesForCountry(countryId);
+        return cityRepository.findByCountry_Id(countryId);
     }
 }

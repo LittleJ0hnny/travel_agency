@@ -9,8 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface HotelRepository extends JpaRepository<Hotel, Integer> {
-    List<Hotel> getAllHotelsForCity(int id);
-    List<Hotel> findFreeHotelInDate(int cityId, LocalDate date);
+    List<Hotel> findByCity_Id(int id);
     List<Hotel> findFreeHotelInDateRange(int cityId, LocalDate dateFrom, LocalDate dateTo);
     List<Object> usingRoomsForHotelInDateRange(Hotel hotel, LocalDate dateFrom, LocalDate dateTo);
     int numberClients(int hotelId);

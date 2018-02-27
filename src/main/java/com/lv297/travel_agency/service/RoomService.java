@@ -12,6 +12,5 @@ public interface RoomService {
     Room getRoomById(int id);
     List<Room> getAllRooms();
     List<Room> getAllRoomsForHotel(int id);
-    List<Room> findFreeRoomInHotelInDate(int hotelId, LocalDate date);
     List<Room> findFreeRoomInHotelInDateRange(int hotelId, LocalDate dateFrom, LocalDate dateTo);
 }
