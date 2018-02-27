@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -18,16 +19,19 @@ public class VisaServiceImpl implements VisaService {
     private VisaRepository visaRepository;
 
     @Override
+    @Transactional
     public Visa updateVisa(Visa visa) {
         return null;
     }
 
     @Override
+    @Transactional
     public void deleteVisa(Visa visa) {
         visaRepository.delete(visa);
     }
 
     @Override
+    @Transactional
     public void saveVisa(Visa visa) {
         visaRepository.save(visa);
     }
@@ -53,6 +57,7 @@ public class VisaServiceImpl implements VisaService {
     }
 
     @Override
+    @Transactional
     public void deleteVisaById(int id) {
         Visa visa = getVisaById(id);
         if(visa!=null){

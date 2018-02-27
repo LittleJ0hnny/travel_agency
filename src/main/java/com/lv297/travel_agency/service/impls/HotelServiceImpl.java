@@ -1,11 +1,13 @@
 package com.lv297.travel_agency.service.impls;
 
 import com.lv297.travel_agency.entities.Hotel;
+import com.lv297.travel_agency.entities.HotelDTO;
 import com.lv297.travel_agency.repository.HotelRepository;
 import com.lv297.travel_agency.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,16 +18,19 @@ public class HotelServiceImpl implements HotelService {
     private HotelRepository hotelRepository;
 
     @Override
+    @Transactional
     public Hotel updateHotel(Hotel hotel) {
         return null;
     }
 
     @Override
+    @Transactional
     public void deleteHotel(Hotel hotel) {
         hotelRepository.delete(hotel);
     }
 
     @Override
+    @Transactional
     public void saveHotel(Hotel hotel) {
         hotelRepository.save(hotel);
     }
@@ -51,24 +56,15 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public List<Object[]> hotelsStatistic() {
-        List<Object[]> hotelsStatistic = new ArrayList<>();
+    public List<HotelDTO> hotelsStatistic() {
+        List<HotelDTO> hotelsStatistic = new ArrayList<>();
         List<Hotel> hotels = hotelRepository.findAll();
+        HotelDTO hotelDTO;
         for (Hotel hotel : hotels) {
-            double averageTime = 0;
-            LocalDate dateTo;
-            LocalDate dateFrom;
-            List<Object> averageTimes = hotelRepository.averageBookingTime(hotel.getId());
-            if (!averageTimes.isEmpty()) {
-                for (Object o : averageTimes) {
-                    Object[] objects = (Object[]) o;
-                    dateTo = LocalDate.parse( objects[0].toString());
-                    dateFrom = LocalDate.parse(objects[1].toString());
-                    averageTime += dateTo.toEpochDay() - dateFrom.toEpochDay();
-                }
-                averageTime = averageTime / averageTimes.size();
-            }
-            hotelsStatistic.add(new Object[]{hotel,hotelRepository.numberClients(hotel.getId()),averageTime});
+            hotelDTO = new HotelDTO(hotel);
+            hotelDTO.setNumberClient(hotelRepository.numberClients(hotel.getId()));
+            hotelDTO.setAverageBookingTime(hotelRepository.averageBookingTime(hotel.getId()));
+            hotelsStatistic.add(hotelDTO);
         }
         return hotelsStatistic;
     }

@@ -49,12 +49,12 @@
                                     </tr>
                                     <c:forEach var="hotel" items="${hotels}">
                                             <tr>
-                                                <td>${hotel[0].city.name}</td>
-                                                <td>${hotel[0].name}</td>
-                                                <td>${hotel[0].rooms.size()}</td>
-                                                <td><a href="http://localhost:8080/rooms/${hotel[0].id}">Show all rooms for this hotel</a></td>
-                                                <td>${hotel[1]}</td>
-                                                <td>${hotel[2]}</td>
+                                                <td>${hotel.city.name}</td>
+                                                <td>${hotel.name}</td>
+                                                <td>${hotel.rooms.size()}</td>
+                                                <td><a href="http://localhost:8080/rooms/${hotel.id}">Show all rooms for this hotel</a></td>
+                                                <td>${hotel.numberClient}</td>
+                                                <td>${hotel.averageBookingTime}</td>
                                             </tr>
                                     </c:forEach>
                 </table>

@@ -6,6 +6,7 @@ import com.lv297.travel_agency.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -14,16 +15,19 @@ public class ClientServiceImpl implements ClientService {
     private ClientRepository clientRepository;
 
     @Override
-    public Client updateCountry(Client client) {
+    @Transactional
+    public Client updateClient(Client client) {
         return null;
     }
 
     @Override
+    @Transactional
     public void deleteClient(Client client) {
         clientRepository.delete(client);
     }
 
     @Override
+    @Transactional
     public void saveClient(Client client) {
         clientRepository.save(client);
     }

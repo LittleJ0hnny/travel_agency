@@ -6,6 +6,7 @@ import com.lv297.travel_agency.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -15,16 +16,19 @@ public class RoomServiceImpl implements RoomService {
     private RoomRepository roomRepository;
 
     @Override
+    @Transactional
     public Room updateRoom(Room room) {
         return null;
     }
 
     @Override
+    @Transactional
     public void deleteRoom(Room room) {
         roomRepository.delete(room);
     }
 
     @Override
+    @Transactional
     public void saveRoom(Room room) {
         roomRepository.save(room);
     }
