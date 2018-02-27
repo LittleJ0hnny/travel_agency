@@ -38,7 +38,7 @@ public class RoomServiceController {
     }
 
     @RequestMapping(value = "/rooms/findFreeroom", method = RequestMethod.POST)
-    public ModelAndView findFreeRoomInHotel(@RequestParam String From, String To, int hotelId){
+    public ModelAndView findFreeRoomInHotel(@RequestParam String From,@RequestParam String To,@RequestParam int hotelId){
         LocalDate dateFrom = LocalDate.parse(From);
         LocalDate dateTo = LocalDate.parse(To);
 
@@ -51,7 +51,7 @@ public class RoomServiceController {
         rooms = roomService.findFreeRoomInHotelInDateRange(hotelId,dateFrom,dateTo);
         model.addObject("hotelId",hotelId);
         model.addObject("todayDate", LocalDate.now());
-        model.addObject("hotels", rooms);
+        model.addObject("rooms", rooms);
         model.addObject("tableName","Rooms");
         return model;
     }
