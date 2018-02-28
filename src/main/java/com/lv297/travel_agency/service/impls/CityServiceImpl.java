@@ -1,13 +1,12 @@
 package com.lv297.travel_agency.service.impls;
 
 import com.lv297.travel_agency.entities.City;
-import com.lv297.travel_agency.entities.Hotel;
 import com.lv297.travel_agency.repository.CityRepository;
 import com.lv297.travel_agency.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -16,16 +15,19 @@ public class CityServiceImpl implements CityService {
     private CityRepository cityRepository;
 
     @Override
+    @Transactional
     public City updateCity(City city) {
         return cityRepository.merge(city);
     }
 
     @Override
+    @Transactional
     public void deleteCity(City city) {
         cityRepository.delete(city);
     }
 
     @Override
+    @Transactional
     public void saveCity(City city) {
         cityRepository.save(city);
     }
@@ -36,6 +38,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
+    @Transactional
     public void deleteCityById(int id) {
         City city = getCityById(id);
         if (city!=null) {
@@ -51,6 +54,6 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public List<City> getAllCitiesForCountry(int countryId) {
-        return cityRepository.getAllCitiesForCountry(countryId);
+        return cityRepository.findByCountry_Id(countryId);
     }
 }

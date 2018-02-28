@@ -23,6 +23,11 @@ public class CityRepositoryImpl extends SimpleJpaRepository<City, Integer> imple
     }
 
     @Override
+    public List<City> findByCountry_Id(int Id) {
+        return null;
+    }
+
+    @Override
     public List<City> getAllCitiesForCountry(int countryId) {
         List cities;
         Query query = entityManager.createQuery("SELECT city FROM City city " +

@@ -39,7 +39,7 @@ public class HotelServiceController {
     }
 
     @RequestMapping(value = "/hotels/findFreeHotel", method = RequestMethod.POST)
-    public ModelAndView findFreeHotel(@RequestParam String From, String To, int cityId){
+    public ModelAndView findFreeHotel(@RequestParam String From,@RequestParam String To,@RequestParam int cityId){
         LocalDate dateFrom = LocalDate.parse(From);
         LocalDate dateTo = LocalDate.parse(To);
 
@@ -49,11 +49,7 @@ public class HotelServiceController {
         }
         List hotels;
         ModelAndView model = new ModelAndView("ShowHotels");
-        if (dateFrom.equals(dateTo)){
-            hotels = hotelService.findFreeHotelInDate(cityId,dateFrom);
-        }else{
-            hotels = hotelService.findFreeHotelInDateRange(cityId,dateFrom,dateTo);
-        }
+        hotels = hotelService.findFreeHotelInDateRange(cityId,dateFrom,dateTo);
         model.addObject("cityId",cityId);
         model.addObject("todayDate", LocalDate.now());
         model.addObject("hotels", hotels);

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -16,16 +17,19 @@ public class BookingServiceImpl implements BookingService {
     private BookingRepository bookingRepository;
 
     @Override
+    @Transactional
     public Booking updateBooking(Booking booking) {
         return null;
     }
 
     @Override
+    @Transactional
     public void deleteBooking(Booking booking) {
         bookingRepository.delete(booking);
     }
 
     @Override
+    @Transactional
     public void saveBooking(Booking booking) {
         bookingRepository.save(booking);
     }
