@@ -1,5 +1,6 @@
 package com.lv297.travel_agency.service;
 
+import com.lv297.travel_agency.entities.City;
 import com.lv297.travel_agency.entities.Country;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface CountryService {
     Country getCountryById(int id);
     List<Country> getAllCountries();
     void deleteCountryById(int id);
+    List<City> searchCitiesByName(String name);
 }

@@ -56,4 +56,9 @@ public class CityServiceImpl implements CityService {
     public List<City> getAllCitiesForCountry(int countryId) {
         return cityRepository.findByCountry_Id(countryId);
     }
+
+    @Override
+    public List<City> searchCitiesByName(String name) {
+        return cityRepository.searchCitiesByName(name);
+    }
 }
