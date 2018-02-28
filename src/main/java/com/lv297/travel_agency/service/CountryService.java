@@ -12,5 +12,5 @@ public interface CountryService {
     Country getCountryById(int id);
     List<Country> getAllCountries();
     void deleteCountryById(int id);
-    List<City> searchCitiesByName(String name);
+    List<Country> searchCountriesByName(String name);
 }
