@@ -33,6 +33,10 @@ public class CountryServiceController {
         return new ModelAndView("countryMain","countries", countryService.searchCountriesByName(name));
     }
 
+    @RequestMapping("/countries/statistic")
+    public ModelAndView getCountryStatistic(){
+        return new ModelAndView("countryStatisticMain", "countries", countryService.getAllCountries());
+    }
     /*@RequestMapping("/countries/getAllCountries")
     public ModelAndView getAllCountries(){
         return new ModelAndView("countryMain", "countries", countryService.getAllCountries());

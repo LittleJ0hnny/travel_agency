@@ -3,7 +3,6 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <%--<th scope="col">ID</th>--%>
             <th scope="col">Country name</th>
             <th scope="col">Options</th>
         </tr>
@@ -11,7 +10,6 @@
     <tbody>
     <c:forEach var="country" items="${countries}">
         <tr>
-            <%--<th scope="row">${country.id}</th>--%>
             <td>${country.name}</td>
             <td class="nav-item dropdown">
                 <a type="button"  class="btn btn-primary" href="${pageContext.request.contextPath}/cities/selectCitiesByCountry/${country.id}">Get cities</a>

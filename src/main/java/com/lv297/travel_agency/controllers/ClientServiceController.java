@@ -22,12 +22,11 @@ public class ClientServiceController {
     @Autowired
     private ClientService clientService;
 
-    @RequestMapping("/clients")
+    @RequestMapping("/clients/statistic")
     public ModelAndView getClients(){
         List clients = clientService.getAllClients();
-        ModelAndView model = new ModelAndView("ShowClients");
+        ModelAndView model = new ModelAndView("clientStatisticMain");
         model.addObject("clients", clients);
-        model.addObject("tableName","Clients");
         return model;
     }
 

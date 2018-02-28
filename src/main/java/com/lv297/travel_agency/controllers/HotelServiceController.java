@@ -36,22 +36,15 @@ public class HotelServiceController {
     public ModelAndView searchHotelsByName(){
         return new ModelAndView("hotelMain", "hotels", /*TODO*/hotelService.getAllHotels());
     }
-    /*@RequestMapping("/hotels/{id}")
-    public ModelAndView getHotels(@PathVariable int id){
+    @RequestMapping("/hotels/statistic")
+    public ModelAndView hotelsStatistic(){
         List hotels;
-        ModelAndView model = new ModelAndView("ShowHotels");
-        if (id!=0){
-            hotels = hotelService.getAllHotelsForCity(id);
-            model.addObject("todayDate", LocalDate.now());
-        }else {
-            hotels = hotelService.hotelsStatistic();
-        }
-        model.addObject("cityId",id);
+        ModelAndView model = new ModelAndView("hotelStatisticMain");
+        hotels = hotelService.hotelsStatistic();
         model.addObject("hotels", hotels);
-        model.addObject("tableName","Hotels");
         return model;
     }
-
+/*
     @RequestMapping(value = "/hotels/findFreeHotel", method = RequestMethod.POST)
     public ModelAndView findFreeHotel(@RequestParam String From,@RequestParam String To,@RequestParam int cityId){
         LocalDate dateFrom = LocalDate.parse(From);
