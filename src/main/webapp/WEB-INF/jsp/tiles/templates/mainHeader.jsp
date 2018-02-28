@@ -12,20 +12,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/cities"> Cities</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> Hotels</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Rooms</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Clients</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Visas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Bookings</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Statistic</a>
+                <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/hotels/statistic">Show Hotel Statistic</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/clients/statistic">Show Client Statistic</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/countries/statistic">Show Countries Statistic</a>
+                </div>
             </li>
         </ul>
     </div>

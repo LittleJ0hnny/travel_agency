@@ -16,7 +16,7 @@
             <td>${city.name}</td>
             <td>${city.country.name}</td>
             <td>
-                <a type="button"  class="btn btn-primary" href="${pageContext.request.contextPath}/cities/selectHotelsByCity/${city.id}">Get hotels</a>
+                <a type="button"  class="btn btn-primary" href="${pageContext.request.contextPath}/hotels/selectHotelsByCity/${city.id}">Get hotels</a>
             </td>
         </tr>
     </c:forEach>
