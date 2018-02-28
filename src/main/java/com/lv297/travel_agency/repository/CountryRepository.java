@@ -11,5 +11,5 @@ import java.util.List;
 public interface CountryRepository extends JpaRepository<Country, Integer> {
 
     @Query("SELECT country FROM Country country WHERE country.name LIKE %:name%")
-    List<City> searchCountryByName(@Param("name") String name);
+    List<Country> searchCountryByName(@Param("name") String name);
 }

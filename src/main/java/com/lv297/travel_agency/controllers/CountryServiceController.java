@@ -30,7 +30,7 @@ public class CountryServiceController {
     }
     @RequestMapping("/countries/searchCountriesByName")
     public ModelAndView searchCountriesByName(@RequestParam String name){
-        return new ModelAndView("countryMain","countries", countryService.searchCitiesByName(name));
+        return new ModelAndView("countryMain","countries", countryService.searchCountriesByName(name));
     }
 
     /*@RequestMapping("/countries/getAllCountries")

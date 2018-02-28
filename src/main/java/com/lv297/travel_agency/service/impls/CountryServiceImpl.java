@@ -53,7 +53,7 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public List<City> searchCitiesByName(String name) {
+    public List<Country> searchCountriesByName(String name) {
         return countryRepository.searchCountryByName(name);
     }
 }
