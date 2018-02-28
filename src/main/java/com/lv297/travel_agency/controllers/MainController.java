@@ -35,7 +35,7 @@ public class MainController {
 
     @RequestMapping("/")
     public ModelAndView onIndex(){
-        return new ModelAndView("countryMain");
+        return new ModelAndView("index");
     }
     
 

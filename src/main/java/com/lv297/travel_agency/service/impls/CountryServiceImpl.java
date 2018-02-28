@@ -15,7 +15,7 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public Country updateCountry(Country country) {
-        return null;
+        return countryRepository.merge(country);
     }
 
     @Override

@@ -26,15 +26,17 @@
     <tiles:insertAttribute name="header"/>
 </header>
 
-<div>
-    <div class="nav-item dropdown">
-        <tiles:insertAttribute name="navigation"/>
+<div class="container-fluid">
+    <div class="row">
+        <div class="nav-item dropdown" class="col">
+            <tiles:insertAttribute name="navigation"/>
+        </div>
+        <div class="col">
+            <tiles:insertAttribute name="input"/>
+        </div>
     </div>
-    <div>
+    <div class="row">
         <tiles:insertAttribute name="content"/>
-    </div>
-    <div>
-        <tiles:insertAttribute name="input"/>
     </div>
 </div>
 

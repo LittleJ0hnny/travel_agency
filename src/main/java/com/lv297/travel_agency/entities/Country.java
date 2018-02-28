@@ -14,6 +14,10 @@ public class Country {
 
     public Country() {}
 
+    public Country(String name) {
+        this.name = name;
+    }
+
     public Country(String name, List<Visa> visas, List<City> cities) {
         this.name = name;
         this.visas = visas;

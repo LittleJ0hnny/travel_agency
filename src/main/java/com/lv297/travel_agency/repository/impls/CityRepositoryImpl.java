@@ -32,5 +32,10 @@ public class CityRepositoryImpl extends SimpleJpaRepository<City, Integer> imple
         return cities;
     }
 
+    @Override
+    public City merge(City city) {
+        return entityManager.merge(city);
+    }
+
 
 }

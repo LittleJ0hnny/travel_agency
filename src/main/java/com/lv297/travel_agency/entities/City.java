@@ -14,6 +14,11 @@ public class City {
 
     public City() { }
 
+    public City(String name, Country country) {
+        this.name = name;
+        this.country = country;
+    }
+
     public City(int id, String name, Country country, List<Hotel> hotels) {
         this.id = id;
         this.name = name;
