@@ -1,6 +1,7 @@
 package com.lv297.travel_agency.service;
 
 import com.lv297.travel_agency.entities.Hotel;
+import com.lv297.travel_agency.entities.HotelDTO;
 import com.lv297.travel_agency.entities.Room;
 
 import java.time.LocalDate;
@@ -13,7 +14,6 @@ public interface HotelService {
     Hotel getHotelById(int id);
     List<Hotel> getAllHotels();
     List<Hotel> getAllHotelsForCity(int id);
-    List<Hotel> findFreeHotelInDate(int cityId, LocalDate date);
     List<Hotel> findFreeHotelInDateRange(int cityId, LocalDate dateFrom, LocalDate dateTo);
-    List<Object[]> hotelsStatistic();
+    List<HotelDTO> hotelsStatistic();
 }

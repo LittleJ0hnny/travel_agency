@@ -7,22 +7,49 @@
         <put-attribute name="header" value="/WEB-INF/jsp/tiles/templates/mainHeader.jsp"/>
         <put-attribute name="navigation" value=""/>
         <put-attribute name="content" value=""/>
-        <put-attribute name="dropdown" value=""/>
         <put-attribute name="input" value=""/>
-        <put-attribute name="create" value=""/>
         <put-attribute name="footer" value="/WEB-INF/jsp/tiles/templates/mainFooter.jsp"/>
-    </definition>
-    <definition name="managing-template">
-
     </definition>
     <definition name="index" extends="common-definition">
         <put-attribute name="title" value="Welcome Page" />
     </definition>
+
+    <!--Definitions for countries-->
     <definition name="countryMain" extends="common-definition">
         <put-attribute name="title" value="Countries Manager"/>
         <put-attribute name="navigation" value="/WEB-INF/jsp/components/country/navigation.jsp"/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/country/table.jsp"/>
-        <put-attribute name="dropdown" value="/WEB-INF/jsp/components/country/dropdown.jsp"/>
-        <put-attribute name="input" value="/WEB-INF/jsp/components/country/inputForm.jsp"/>
+        <put-attribute name="input" value="/WEB-INF/jsp/components/country/inputFormCreate.jsp"/>
+    </definition>
+    <definition name="countryUpdate" extends="common-definition">
+        <put-attribute name="title" value="Countries Manager"/>
+        <put-attribute name="navigation" value="/WEB-INF/jsp/components/country/navigation.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/components/country/table.jsp"/>
+        <put-attribute name="input" value="/WEB-INF/jsp/components/country/inputFormUpdate.jsp"/>
+    </definition>
+    <definition name="countryGetById" extends="common-definition">
+        <put-attribute name="title" value="Countries Manager"/>
+        <put-attribute name="navigation" value="/WEB-INF/jsp/components/country/navigation.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/components/country/table.jsp"/>
+        <put-attribute name="input" value="/WEB-INF/jsp/components/country/inputFormId.jsp"/>
+    </definition>
+    <!--Definitions for cities-->
+    <definition name="cityMain" extends="common-definition">
+        <put-attribute name="title" value="Countries Manager"/>
+        <put-attribute name="navigation" value="/WEB-INF/jsp/components/city/navigation.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/components/city/table.jsp"/>
+        <put-attribute name="input" value="/WEB-INF/jsp/components/city/inputFormCreate.jsp"/>
+    </definition>
+    <definition name="cityUpdate" extends="common-definition">
+        <put-attribute name="title" value="Countries Manager"/>
+        <put-attribute name="navigation" value="/WEB-INF/jsp/components/city/navigation.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/components/city/table.jsp"/>
+        <put-attribute name="input" value="/WEB-INF/jsp/components/city/inputFormUpdate.jsp"/>
+    </definition>
+    <definition name="cityGetById" extends="common-definition">
+        <put-attribute name="title" value="Countries Manager"/>
+        <put-attribute name="navigation" value="/WEB-INF/jsp/components/city/navigation.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/components/city/table.jsp"/>
+        <put-attribute name="input" value="/WEB-INF/jsp/components/city/inputFormId.jsp"/>
     </definition>
 </tiles-definitions>
