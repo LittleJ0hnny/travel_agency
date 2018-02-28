@@ -25,5 +25,5 @@ public interface RoomRepository extends JpaRepository<Room, Integer> {
             "DATE(:dateTo)>booking.bookingFrom AND " +
             "DATE(:dateTo)>=booking.bookingTo)) AND " +
             "booking.hotel.id=:id)")
-    List<Room> findFreeRoomInHotelInDateRange(@Param("id") int hotelId,@Param("dateFrom") LocalDate dateFrom,@Param("dateTo") LocalDate dateTo);
+    List<Room> findFreeRoomInHotelInDateRange(@Param("id") int hotelId, @Param("dateFrom") LocalDate dateFrom, @Param("dateTo") LocalDate dateTo);
 }

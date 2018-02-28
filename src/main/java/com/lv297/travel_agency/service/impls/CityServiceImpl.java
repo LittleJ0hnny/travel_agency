@@ -41,7 +41,7 @@ public class CityServiceImpl implements CityService {
     @Transactional
     public void deleteCityById(int id) {
         City city = getCityById(id);
-        if (city!=null) {
+        if (city != null) {
             deleteCity(city);
         }
     }

@@ -13,7 +13,7 @@ public class HotelDTO {
     private int numberClient;
     private double averageBookingTime;
 
-    public HotelDTO(Hotel hotel){
+    public HotelDTO(Hotel hotel) {
         id = hotel.getId();
         name = hotel.getName();
         city = hotel.getCity();

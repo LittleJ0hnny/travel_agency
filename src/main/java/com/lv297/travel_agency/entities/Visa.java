@@ -15,7 +15,8 @@ public class Visa {
     private LocalDate validTo;
     private LocalDate lastTimeUsed;
 
-    public Visa() {}
+    public Visa() {
+    }
 
     public Visa(int id, Client client, Country country, LocalDate validFrom, LocalDate validTo) {
         this.id = id;
@@ -27,7 +28,7 @@ public class Visa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="visa_id", nullable = false, unique = true)
+    @Column(name = "visa_id", nullable = false, unique = true)
     public int getId() {
         return id;
     }

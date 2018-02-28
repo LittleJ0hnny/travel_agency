@@ -22,9 +22,9 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 @ComponentScan("com.lv297.travel_agency.controllers")
 public class WebConfig implements WebMvcConfigurer {
     @Bean
-    public TilesConfigurer tilesConfigurer(){
+    public TilesConfigurer tilesConfigurer() {
         TilesConfigurer tilesConfigurer = new TilesConfigurer();
-        tilesConfigurer.setDefinitions(new String[] {"/WEB-INF/jsp/**/tiles.xml"});
+        tilesConfigurer.setDefinitions(new String[]{"/WEB-INF/jsp/**/tiles.xml"});
         tilesConfigurer.setCheckRefresh(true);
         return tilesConfigurer;
     }

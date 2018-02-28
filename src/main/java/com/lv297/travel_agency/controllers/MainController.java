@@ -34,13 +34,13 @@ public class MainController {
 
 
     @RequestMapping("/")
-    public ModelAndView onIndex(){
+    public ModelAndView onIndex() {
         return new ModelAndView("index");
     }
 
 
     @RequestMapping("/delete/{element}/{id}")
-    public ModelAndView deleteElement(@PathVariable String element, int id){
+    public ModelAndView deleteElement(@PathVariable String element, int id) {
 //        if (element.equals("country")){
 //            countryService.deleteCountryById(id);
 //            return getCountries();

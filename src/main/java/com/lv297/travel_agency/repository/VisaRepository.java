@@ -1,5 +1,6 @@
 package com.lv297.travel_agency.repository;
 
+import com.lv297.travel_agency.entities.Country;
 import com.lv297.travel_agency.entities.Visa;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -28,8 +29,8 @@ public interface VisaRepository extends JpaRepository<Visa, Integer> {
             "WHERE visa.client.id=:id AND visa.validTo > DATE (:curentDate)")
     List<Visa> activeVisasForClient(@Param("id") int clientId, @Param("curentDate") LocalDate curentDate);
 
-    @Query("SELECT visa FROM Visa visa " +
+    @Query("SELECT DISTINCT visa.country FROM Visa visa " +
             "WHERE visa.client.id=:id AND visa.lastTimeUsed != DATE(0000-00-00)")
-    List<Visa> visitedCountries(@Param("id") int clientId);
+    List<Country> visitedCountries(@Param("id") int clientId);
 
 }

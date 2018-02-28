@@ -22,24 +22,25 @@ public class RoomServiceController {
     private RoomService roomService;
 
     @RequestMapping("/rooms/selectRoomsByHotel/{id}")
-    public ModelAndView selectRoomsByHotel(@PathVariable int id){
+    public ModelAndView selectRoomsByHotel(@PathVariable int id) {
         ModelAndView modelAndView = new ModelAndView("roomMain");
         modelAndView.addObject("rooms", roomService.getAllRoomsForHotel(id));
-        modelAndView.addObject("hotelId",id);
+        modelAndView.addObject("hotelId", id);
         return modelAndView;
     }
+
     @RequestMapping("/rooms/searchRoomsByDateRange")
-    public ModelAndView searchRoomsByDateRange(@RequestParam int hotelId, @RequestParam String dateFrom, @RequestParam String dateTo){
+    public ModelAndView searchRoomsByDateRange(@RequestParam int hotelId, @RequestParam String dateFrom, @RequestParam String dateTo) {
         LocalDate from = LocalDate.parse(dateFrom);
         LocalDate to = LocalDate.parse(dateTo);
 
-        if (from.toEpochDay() > to.toEpochDay()){
+        if (from.toEpochDay() > to.toEpochDay()) {
             return selectRoomsByHotel(hotelId);
         }
         List rooms;
         ModelAndView model = new ModelAndView("roomMain");
-        rooms = roomService.findFreeRoomInHotelInDateRange(hotelId,from,to);
-        model.addObject("hotelId",hotelId);
+        rooms = roomService.findFreeRoomInHotelInDateRange(hotelId, from, to);
+        model.addObject("hotelId", hotelId);
         model.addObject("rooms", rooms);
         return model;
     }

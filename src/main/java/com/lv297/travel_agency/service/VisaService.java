@@ -18,5 +18,5 @@ public interface VisaService {
     List<Visa> getAllVisasForCountry(int countryId);
     List<Visa> visasForClient(int clientId);
     List<Visa> activeVisasForClient(int clientId);
-    List<Visa> visitedCountries(int clientId);
+    List<Country> visitedCountries(int clientId);
 }

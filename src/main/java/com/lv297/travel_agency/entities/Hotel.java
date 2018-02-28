@@ -12,7 +12,8 @@ public class Hotel {
     private City city;
     private List<Room> rooms;
 
-    public Hotel(){}
+    public Hotel() {
+    }
 
     public Hotel(int id, String name, City city, List<Room> rooms) {
         this.id = id;

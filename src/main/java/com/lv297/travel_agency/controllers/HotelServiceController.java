@@ -23,21 +23,22 @@ public class HotelServiceController {
     private HotelService hotelService;
 
     @RequestMapping("/hotels")
-    public ModelAndView getHotels(){
+    public ModelAndView getHotels() {
         return new ModelAndView("hotelMain", "hotels", hotelService.getAllHotels());
     }
 
     @RequestMapping("/hotels/selectHotelsByCity/{id}")
-    public ModelAndView selectHotelsByCity(@PathVariable int id){
+    public ModelAndView selectHotelsByCity(@PathVariable int id) {
         return new ModelAndView("hotelMain", "hotels", hotelService.getAllHotelsForCity(id));
     }
 
     @RequestMapping("/hotels/searchHotelsByName")
-    public ModelAndView searchHotelsByName(){
+    public ModelAndView searchHotelsByName() {
         return new ModelAndView("hotelMain", "hotels", /*TODO*/hotelService.getAllHotels());
     }
+
     @RequestMapping("/hotels/statistic")
-    public ModelAndView hotelsStatistic(){
+    public ModelAndView hotelsStatistic() {
         List hotels;
         ModelAndView model = new ModelAndView("hotelStatisticMain");
         hotels = hotelService.hotelsStatistic();

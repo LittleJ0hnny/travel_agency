@@ -12,7 +12,8 @@ public class City {
     private Country country;
     private List<Hotel> hotels;
 
-    public City() { }
+    public City() {
+    }
 
     public City(String name, Country country) {
         this.name = name;
@@ -28,7 +29,7 @@ public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="city_id", nullable = false, unique = true)
+    @Column(name = "city_id", nullable = false, unique = true)
     public int getId() {
         return id;
     }

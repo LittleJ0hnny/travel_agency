@@ -12,7 +12,8 @@ public class Country {
     private List<Visa> visas;
     private List<City> cities;
 
-    public Country() {}
+    public Country() {
+    }
 
     public Country(String name) {
         this.name = name;

@@ -29,21 +29,22 @@ public class CityServiceController {
     private CountryService countryService;
 
     @RequestMapping("/cities")
-    public ModelAndView cityMain(){
+    public ModelAndView cityMain() {
         return new ModelAndView("cityMain", "cities", cityService.getAllCities());
     }
 
     @RequestMapping("/cities/selectCitiesByCountry/{id}")
-    public ModelAndView citiesByCountry(@PathVariable int id){
+    public ModelAndView citiesByCountry(@PathVariable int id) {
         return new ModelAndView("cityMain", "cities", cityService.getAllCitiesForCountry(id));
     }
+
     @RequestMapping("/cities/searchCitiesByName")
-    public ModelAndView searchCitiesByName(@RequestParam String name){
+    public ModelAndView searchCitiesByName(@RequestParam String name) {
         return new ModelAndView("cityMain", "cities", cityService.searchCitiesByName(name));
     }
 
     @RequestMapping("/cities/getAllCities")
-    public ModelAndView getAllCities(){
+    public ModelAndView getAllCities() {
         return new ModelAndView("cityMain", "cities", cityService.getAllCities());
     }
 

@@ -15,7 +15,8 @@ public class Booking {
     private LocalDate bookingFrom;
     private LocalDate bookingTo;
 
-    public Booking(){}
+    public Booking() {
+    }
 
     public Booking(int id, Client client, Hotel hotel, Room room, LocalDate bookingFrom, LocalDate bookingTo) {
         this.id = id;

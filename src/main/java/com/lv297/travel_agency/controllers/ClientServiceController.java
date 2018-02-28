@@ -23,13 +23,12 @@ public class ClientServiceController {
     private ClientService clientService;
 
     @RequestMapping("/clients/statistic")
-    public ModelAndView getClients(){
+    public ModelAndView getClients() {
         List clients = clientService.getAllClients();
         ModelAndView model = new ModelAndView("clientStatisticMain");
         model.addObject("clients", clients);
         return model;
     }
-
 
 
 }

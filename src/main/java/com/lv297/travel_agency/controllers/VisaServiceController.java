@@ -20,34 +20,31 @@ public class VisaServiceController {
     private VisaService visaService;
 
     @RequestMapping("/visas/{id}")
-    public ModelAndView getVisas(@PathVariable int id){
+    public ModelAndView getVisas(@PathVariable int id) {
         List visas = visaService.getAllVisasForCountry(id);
         ModelAndView model = new ModelAndView("ShowVisas");
         model.addObject("visas", visas);
-        model.addObject("tableName","Visas");
+        model.addObject("tableName", "Visas");
         return model;
     }
 
     @RequestMapping("/visitedCountry/{id}")
-    public ModelAndView getVisitedCountriesForClient(@PathVariable int id){
-        ModelAndView model = new ModelAndView("ShowVisitedCountries");
-        List visas;
-        visas = visaService.visitedCountries(id);
-        model.addObject("visas", visas);
-        model.addObject("tableName","Visited Countries");
+    public ModelAndView getVisitedCountriesForClient(@PathVariable int id) {
+        ModelAndView model = new ModelAndView("visitedCountries");
+        List countries;
+        countries = visaService.visitedCountries(id);
+        model.addObject("countries", countries);
         return model;
     }
 
     @RequestMapping("/clientVisas/{state}/{id}")
-    public ModelAndView getVisasForClient(@PathVariable String state, @PathVariable int id){
+    public ModelAndView getVisasForClient(@PathVariable String state, @PathVariable int id) {
         List visas;
-        ModelAndView model = new ModelAndView("ShowVisas");
-        if (state.equals("active")){
+        ModelAndView model = new ModelAndView("clientsVisas");
+        if (state.equals("active")) {
             visas = visaService.activeVisasForClient(id);
-            model.addObject("tableName","Active client's Visas");
-        }else{
+        } else {
             visas = visaService.visasForClient(id);
-            model.addObject("tableName","All client's Visas");
         }
         model.addObject("visas", visas);
         return model;

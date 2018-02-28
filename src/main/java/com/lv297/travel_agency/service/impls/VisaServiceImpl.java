@@ -60,7 +60,7 @@ public class VisaServiceImpl implements VisaService {
     @Transactional
     public void deleteVisaById(int id) {
         Visa visa = getVisaById(id);
-        if(visa!=null){
+        if (visa != null) {
             deleteVisa(visa);
         }
     }
@@ -77,11 +77,11 @@ public class VisaServiceImpl implements VisaService {
 
     @Override
     public List<Visa> activeVisasForClient(int clientId) {
-        return visaRepository.activeVisasForClient(clientId,LocalDate.now());
+        return visaRepository.activeVisasForClient(clientId, LocalDate.now());
     }
 
     @Override
-    public List<Visa> visitedCountries(int clientId) {
+    public List<Country> visitedCountries(int clientId) {
         return visaRepository.visitedCountries(clientId);
     }
 

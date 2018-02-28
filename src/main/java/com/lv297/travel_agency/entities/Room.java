@@ -14,7 +14,8 @@ public class Room {
     private int num_of_beds;
     private List<Booking> bookings;
 
-    public Room(){}
+    public Room() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,7 +37,7 @@ public class Room {
         this.hotel = hotel;
     }
 
-    @Column(name="type", nullable = false, length = 50)
+    @Column(name = "type", nullable = false, length = 50)
     public String getType() {
         return type;
     }
