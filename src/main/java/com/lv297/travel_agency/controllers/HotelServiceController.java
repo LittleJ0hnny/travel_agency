@@ -27,11 +27,15 @@ public class HotelServiceController {
         return new ModelAndView("hotelMain", "hotels", hotelService.getAllHotels());
     }
 
+    @RequestMapping("/hotels/selectHotelsByCity/{id}")
+    public ModelAndView selectHotelsByCity(@PathVariable int id){
+        return new ModelAndView("hotelMain", "hotels", hotelService.getAllHotelsForCity(id));
+    }
+
     @RequestMapping("/hotels/searchHotelsByName")
     public ModelAndView searchHotelsByName(){
         return new ModelAndView("hotelMain", "hotels", /*TODO*/hotelService.getAllHotels());
     }
-    
     /*@RequestMapping("/hotels/{id}")
     public ModelAndView getHotels(@PathVariable int id){
         List hotels;

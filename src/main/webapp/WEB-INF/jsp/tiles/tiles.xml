@@ -56,7 +56,7 @@
     <definition name="hotelMain" extends="common-definition">
         <put-attribute name="title" value="Hotels Manager"/>
         <put-attribute name="navigation" value=""/>
-        <put-attribute name="content" value="/WEB-INF/jsp/components/country/table.jsp"/>
-        <put-attribute name="input" value="/WEB-INF/jsp/components/country/inputFormSearch.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/components/hotels/table.jsp"/>
+        <put-attribute name="input" value="/WEB-INF/jsp/components/hotels/inputFormSearch.jsp"/>
     </definition>
 </tiles-definitions>

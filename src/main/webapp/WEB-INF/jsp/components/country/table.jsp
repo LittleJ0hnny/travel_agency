@@ -14,12 +14,7 @@
             <%--<th scope="row">${country.id}</th>--%>
             <td>${country.name}</td>
             <td class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Option</a>
-                <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/countries/updateCountry/${country.id}">update</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/countries/deleteCountry/${country.id}">remove</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/cities/selectCitiesByCountry/${country.id}">cities</a>
-                </div>
+                <a type="button"  class="btn btn-primary" href="${pageContext.request.contextPath}/cities/selectCitiesByCountry/${country.id}">Get cities</a>
             </td>
         </tr>
     </c:forEach>
