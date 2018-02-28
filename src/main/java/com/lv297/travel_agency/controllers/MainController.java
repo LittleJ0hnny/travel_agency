@@ -37,7 +37,7 @@ public class MainController {
     public ModelAndView onIndex(){
         return new ModelAndView("countryMain");
     }
-    
+
 
     @RequestMapping("/delete/{element}/{id}")
     public ModelAndView deleteElement(@PathVariable String element, int id){
