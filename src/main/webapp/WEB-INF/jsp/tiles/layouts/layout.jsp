@@ -31,11 +31,11 @@
         <div class="nav-item dropdown" class="col">
             <tiles:insertAttribute name="navigation"/>
         </div>
-        <div class="col">
+        <div class="container">
             <tiles:insertAttribute name="input"/>
         </div>
     </div>
-    <div class="row">
+    <div class="container">
         <tiles:insertAttribute name="content"/>
     </div>
 </div>
