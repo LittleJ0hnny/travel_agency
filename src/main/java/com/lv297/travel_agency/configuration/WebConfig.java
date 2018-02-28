@@ -21,15 +21,6 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 @EnableWebMvc
 @ComponentScan("com.lv297.travel_agency.controllers")
 public class WebConfig implements WebMvcConfigurer {
-    /*@Bean
-    public ViewResolver viewResolver() {
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix("/WEB-INF/jsp/components/");
-        viewResolver.setSuffix(".jsp");
-        return viewResolver;
-    }*/
-
     @Bean
     public TilesConfigurer tilesConfigurer(){
         TilesConfigurer tilesConfigurer = new TilesConfigurer();
@@ -43,9 +34,6 @@ public class WebConfig implements WebMvcConfigurer {
         TilesViewResolver viewResolver = new TilesViewResolver();
         registry.viewResolver(viewResolver);
     }
-
-
-
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

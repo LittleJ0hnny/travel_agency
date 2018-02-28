@@ -17,7 +17,7 @@ public class CityServiceImpl implements CityService {
     @Override
     @Transactional
     public City updateCity(City city) {
-        return cityRepository.merge(city);
+        return cityRepository.save(city);
     }
 
     @Override

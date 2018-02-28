@@ -17,7 +17,7 @@ public class CountryServiceImpl implements CountryService {
     @Override
     @Transactional
     public Country updateCountry(Country country) {
-        return countryRepository.merge(country);
+        return countryRepository.save(country);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class CountryServiceImpl implements CountryService {
     @Transactional
     public void deleteCountryById(int id) {
         Country country = getCountryById(id);
-        if(country!=null) {
+        if (country != null) {
             deleteCountry(country);
         }
     }

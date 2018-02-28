@@ -30,7 +30,7 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
                                          @Param("dateFrom") LocalDate dateFrom,
                                          @Param("dateTo") LocalDate dateTo);
 
-    List<Object> usingRoomsForHotelInDateRange(Hotel hotel, LocalDate dateFrom, LocalDate dateTo);
+    /*List<Object> usingRoomsForHotelInDateRange(Hotel hotel, LocalDate dateFrom, LocalDate dateTo);*/
 
     @Query("SELECT COUNT(DISTINCT booking.client) FROM Booking booking " +
             "WHERE booking.hotel.id=:hotelId")

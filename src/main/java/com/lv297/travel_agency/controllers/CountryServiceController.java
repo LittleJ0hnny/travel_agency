@@ -26,14 +26,18 @@ public class CountryServiceController {
 
     @RequestMapping("/countries")
     public ModelAndView countryMain(){
-        return new ModelAndView("countryMain");
+        return new ModelAndView("countryMain","countries", countryService.getAllCountries());
+    }
+    @RequestMapping("/countries/searchCountriesByName")
+    public ModelAndView searchCountriesByName(@RequestParam String name){
+        return new ModelAndView("countryMain","countries", /*TODO*/countryService.getAllCountries());
     }
 
-    @RequestMapping("/countries/getAllCountries")
+    /*@RequestMapping("/countries/getAllCountries")
     public ModelAndView getAllCountries(){
         return new ModelAndView("countryMain", "countries", countryService.getAllCountries());
-    }
-    @RequestMapping(value = "/countries/createCountry", method = RequestMethod.POST)
+    }*/
+    /*@RequestMapping(value = "/countries/createCountry", method = RequestMethod.POST)
     public ModelAndView createCountry(@RequestParam String name){
         countryService.saveCountry(new Country(name));
         return new ModelAndView("countryMain", "countries", countryService.getAllCountries());
@@ -68,5 +72,5 @@ public class CountryServiceController {
         List<Country> list = new ArrayList<>();
         list.add(countryService.getCountryById(id));
         return new ModelAndView("countryMain", "countries", list);
-    }
+    }*/
 }

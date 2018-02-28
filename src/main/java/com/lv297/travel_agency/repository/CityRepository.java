@@ -11,6 +11,4 @@ import java.util.List;
 public interface CityRepository extends JpaRepository<City, Integer> {
     @Query
     List<City> findByCountry_Id(int Id);
-    List<City> getAllCitiesForCountry(int countryId);
-    City merge(City city);
 }

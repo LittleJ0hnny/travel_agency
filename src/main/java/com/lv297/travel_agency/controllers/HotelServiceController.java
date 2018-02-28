@@ -22,7 +22,17 @@ public class HotelServiceController {
     @Autowired
     private HotelService hotelService;
 
-    @RequestMapping("/hotels/{id}")
+    @RequestMapping("/hotels")
+    public ModelAndView getHotels(){
+        return new ModelAndView("hotelMain", "hotels", hotelService.getAllHotels());
+    }
+
+    @RequestMapping("/hotels/searchHotelsByName")
+    public ModelAndView searchHotelsByName(){
+        return new ModelAndView("hotelMain", "hotels", /*TODO*/hotelService.getAllHotels());
+    }
+    
+    /*@RequestMapping("/hotels/{id}")
     public ModelAndView getHotels(@PathVariable int id){
         List hotels;
         ModelAndView model = new ModelAndView("ShowHotels");
@@ -55,5 +65,5 @@ public class HotelServiceController {
         model.addObject("hotels", hotels);
         model.addObject("tableName","Hotels");
         return model;
-    }
+    }*/
 }

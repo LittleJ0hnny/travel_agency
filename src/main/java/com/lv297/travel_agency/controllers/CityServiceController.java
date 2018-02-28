@@ -30,7 +30,16 @@ public class CityServiceController {
 
     @RequestMapping("/cities")
     public ModelAndView cityMain(){
-        return new ModelAndView("cityMain");
+        return new ModelAndView("cityMain", "cities", cityService.getAllCities());
+    }
+
+    @RequestMapping("/cities/selectCitiesByCountry/{id}")
+    public ModelAndView citiesByCountry(@PathVariable int id){
+        return new ModelAndView("cityMain", "cities", cityService.getAllCitiesForCountry(id));
+    }
+    @RequestMapping("/cities/searchCitiesByName")
+    public ModelAndView searchCitiesByName(@RequestParam String name){
+        return new ModelAndView("cityMain", "cities", /*TODO*/cityService.getAllCities());
     }
 
     @RequestMapping("/cities/getAllCities")
@@ -38,7 +47,7 @@ public class CityServiceController {
         return new ModelAndView("cityMain", "cities", cityService.getAllCities());
     }
 
-    @RequestMapping(value = "/cities/createCity", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/cities/createCity", method = RequestMethod.POST)
     public ModelAndView createCity(@RequestParam String name, @RequestParam int idOfCountry){
         City city = new City(name, countryService.getCountryById(idOfCountry));
         cityService.saveCity(city);
@@ -78,5 +87,7 @@ public class CityServiceController {
         List<City> list = new ArrayList<>();
         list.add(cityService.getCityById(id));
         return new ModelAndView("cityMain", "cities", list);
-    }
+    }*/
+
+
 }

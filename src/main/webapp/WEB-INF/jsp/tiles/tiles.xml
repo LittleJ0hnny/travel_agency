@@ -17,11 +17,11 @@
     <!--Definitions for countries-->
     <definition name="countryMain" extends="common-definition">
         <put-attribute name="title" value="Countries Manager"/>
-        <put-attribute name="navigation" value="/WEB-INF/jsp/components/country/navigation.jsp"/>
+        <put-attribute name="navigation" value=""/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/country/table.jsp"/>
-        <put-attribute name="input" value="/WEB-INF/jsp/components/country/inputFormCreate.jsp"/>
+        <put-attribute name="input" value="/WEB-INF/jsp/components/country/inputFormSearch.jsp"/>
     </definition>
-    <definition name="countryUpdate" extends="common-definition">
+    <!--<definition name="countryUpdate" extends="common-definition">
         <put-attribute name="title" value="Countries Manager"/>
         <put-attribute name="navigation" value="/WEB-INF/jsp/components/country/navigation.jsp"/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/country/table.jsp"/>
@@ -32,15 +32,15 @@
         <put-attribute name="navigation" value="/WEB-INF/jsp/components/country/navigation.jsp"/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/country/table.jsp"/>
         <put-attribute name="input" value="/WEB-INF/jsp/components/country/inputFormId.jsp"/>
-    </definition>
+    </definition>-->
     <!--Definitions for cities-->
     <definition name="cityMain" extends="common-definition">
-        <put-attribute name="title" value="Countries Manager"/>
-        <put-attribute name="navigation" value="/WEB-INF/jsp/components/city/navigation.jsp"/>
+        <put-attribute name="title" value="Cities Manager"/>
+        <put-attribute name="navigation" value=""/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/city/table.jsp"/>
-        <put-attribute name="input" value="/WEB-INF/jsp/components/city/inputFormCreate.jsp"/>
+        <put-attribute name="input" value="/WEB-INF/jsp/components/city/inputFormSearch.jsp"/>
     </definition>
-    <definition name="cityUpdate" extends="common-definition">
+    <!--<definition name="cityUpdate" extends="common-definition">
         <put-attribute name="title" value="Countries Manager"/>
         <put-attribute name="navigation" value="/WEB-INF/jsp/components/city/navigation.jsp"/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/city/table.jsp"/>
@@ -51,5 +51,12 @@
         <put-attribute name="navigation" value="/WEB-INF/jsp/components/city/navigation.jsp"/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/city/table.jsp"/>
         <put-attribute name="input" value="/WEB-INF/jsp/components/city/inputFormId.jsp"/>
+    </definition>-->
+    <!--Definitions for hotels-->
+    <definition name="hotelMain" extends="common-definition">
+        <put-attribute name="title" value="Hotels Manager"/>
+        <put-attribute name="navigation" value=""/>
+        <put-attribute name="content" value="/WEB-INF/jsp/components/country/table.jsp"/>
+        <put-attribute name="input" value="/WEB-INF/jsp/components/country/inputFormSearch.jsp"/>
     </definition>
 </tiles-definitions>
