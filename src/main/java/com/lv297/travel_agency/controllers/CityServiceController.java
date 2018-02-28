@@ -39,7 +39,7 @@ public class CityServiceController {
     }
     @RequestMapping("/cities/searchCitiesByName")
     public ModelAndView searchCitiesByName(@RequestParam String name){
-        return new ModelAndView("cityMain", "cities", /*TODO*/cityService.getAllCities());
+        return new ModelAndView("cityMain", "cities", cityService.searchCitiesByName(name));
     }
 
     @RequestMapping("/cities/getAllCities")

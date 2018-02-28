@@ -15,5 +15,6 @@ public interface CityService {
     void deleteCityById(int id);
     List<City> getAllCities();
     List<City> getAllCitiesForCountry(int countryId);
+    List<City> searchCitiesByName(String name);
 
 }

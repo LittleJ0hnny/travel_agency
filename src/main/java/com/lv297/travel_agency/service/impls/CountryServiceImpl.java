@@ -1,5 +1,6 @@
 package com.lv297.travel_agency.service.impls;
 
+import com.lv297.travel_agency.entities.City;
 import com.lv297.travel_agency.entities.Country;
 import com.lv297.travel_agency.repository.CountryRepository;
 import com.lv297.travel_agency.service.CountryService;
@@ -49,5 +50,10 @@ public class CountryServiceImpl implements CountryService {
         if (country != null) {
             deleteCountry(country);
         }
+    }
+
+    @Override
+    public List<City> searchCitiesByName(String name) {
+        return countryRepository.searchCountryByName(name);
     }
 }
