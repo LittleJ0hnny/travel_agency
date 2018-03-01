@@ -61,4 +61,9 @@ public class CityServiceImpl implements CityService {
     public List<City> searchCitiesByName(String name) {
         return cityRepository.searchCitiesByName(name);
     }
+
+    @Override
+    public List<City> searchCitiesByNameForCountry(String name, int countryId) {
+        return cityRepository.searchCitiesByNameForCountry(name,countryId);
+    }
 }

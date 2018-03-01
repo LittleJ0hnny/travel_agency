@@ -4,6 +4,7 @@
         <div class="form-group">
             <input type="text" class="form-control" name ="name" placeholder="Hotel name">
             <small class="form-text text-muted">Please input only string data.</small>
+            <input type="hidden" name="cityId" value="${cityId}">
             <button type="submit" class="btn btn-primary">Search</button>
         </div>
     </fieldset>

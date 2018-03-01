@@ -39,4 +39,7 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
     @Query("SELECT AVG(TO_DAYS(booking.bookingTo)-TO_DAYS(booking.bookingFrom)) " +
             "FROM Booking booking WHERE booking.hotel.id=:hotelId")
     double averageBookingTime(@Param("hotelId") int hotelId);
+
+    @Query("SELECT hotel FROM Hotel hotel WHERE hotel.name LIKE %:name% AND hotel.city.id=:cityId" )
+    List<Hotel> searchHotelsByNameForCity(@Param("name")String name, @Param("cityId") int cityId);
 }

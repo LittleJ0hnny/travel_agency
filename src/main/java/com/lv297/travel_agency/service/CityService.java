@@ -16,5 +16,6 @@ public interface CityService {
     List<City> getAllCities();
     List<City> getAllCitiesForCountry(int countryId);
     List<City> searchCitiesByName(String name);
+    List<City> searchCitiesByNameForCountry(String name, int countryId);
 
 }

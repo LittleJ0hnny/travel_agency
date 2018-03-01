@@ -30,17 +30,30 @@ public class CityServiceController {
 
     @RequestMapping("/cities")
     public ModelAndView cityMain() {
-        return new ModelAndView("cityMain", "cities", cityService.getAllCities());
+        ModelAndView model = new ModelAndView("cityMain");
+        model.addObject("countryId",0);
+        model.addObject("cities", cityService.getAllCities());
+        return model;
     }
 
     @RequestMapping("/cities/selectCitiesByCountry/{id}")
     public ModelAndView citiesByCountry(@PathVariable int id) {
-        return new ModelAndView("cityMain", "cities", cityService.getAllCitiesForCountry(id));
+        ModelAndView model = new ModelAndView("cityMain");
+        model.addObject("countryId",id);
+        model.addObject("cities", cityService.getAllCitiesForCountry(id));
+        return model;
     }
 
     @RequestMapping("/cities/searchCitiesByName")
-    public ModelAndView searchCitiesByName(@RequestParam String name) {
-        return new ModelAndView("cityMain", "cities", cityService.searchCitiesByName(name));
+    public ModelAndView searchCitiesByName(@RequestParam String name, @RequestParam int countryId) {
+        ModelAndView model = new ModelAndView("cityMain");
+        model.addObject("countryId",countryId);
+        if (countryId == 0){
+            model.addObject("cities", cityService.searchCitiesByName(name));
+        }else{
+            model.addObject("cities",cityService.searchCitiesByNameForCountry(name,countryId));
+        }
+        return model;
     }
 
     @RequestMapping("/cities/getAllCities")

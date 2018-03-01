@@ -69,5 +69,10 @@ public class HotelServiceImpl implements HotelService {
         return hotelsStatistic;
     }
 
+    @Override
+    public List<Hotel> searchHotelsByNameForCity(String name, int cityId) {
+        return hotelRepository.searchHotelsByNameForCity(name,cityId);
+    }
+
 
 }
