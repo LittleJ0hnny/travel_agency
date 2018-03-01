@@ -1,8 +1,6 @@
 package com.lv297.travel_agency.repository;
 
-import com.lv297.travel_agency.entities.City;
 import com.lv297.travel_agency.entities.Hotel;
-import com.lv297.travel_agency.entities.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

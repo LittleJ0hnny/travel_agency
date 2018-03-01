@@ -30,7 +30,7 @@ public class PersistenceContext {
         dataSourceConfig.setJdbcUrl(environment.getRequiredProperty("db.url"));
         dataSourceConfig.setUsername(environment.getRequiredProperty("db.username"));
         dataSourceConfig.setPassword(environment.getRequiredProperty("db.password"));
-
+        dataSourceConfig.setMaximumPoolSize(5);
         return new HikariDataSource(dataSourceConfig);
     }
 
@@ -52,6 +52,8 @@ public class PersistenceContext {
         jpaProperties.put("hibernate.format_sql", env.getRequiredProperty("hibernate.format_sql"));
 
         jpaProperties.put("hibernate.enable_lazy_load_no_trans", env.getRequiredProperty("hibernate.enable_lazy_load_no_trans"));
+
+        jpaProperties.put("cache.provider_class", env.getRequiredProperty("cache.provider_class"));
 
         entityManagerFactoryBean.setJpaProperties(jpaProperties);
 
