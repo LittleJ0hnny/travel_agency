@@ -26,7 +26,7 @@ public class Visa {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "visa_id", nullable = false, unique = true)
     public int getId() {
         return id;

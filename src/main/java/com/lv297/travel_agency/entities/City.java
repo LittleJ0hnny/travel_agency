@@ -27,7 +27,7 @@ public class City {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "city_id", nullable = false, unique = true)
     public int getId() {
         return id;

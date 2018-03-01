@@ -1,7 +1,7 @@
 package com.lv297.travel_agency.service.impls;
 
 import com.lv297.travel_agency.entities.Hotel;
-import com.lv297.travel_agency.entities.HotelDTO;
+import com.lv297.travel_agency.dto.HotelDTO;
 import com.lv297.travel_agency.repository.HotelRepository;
 import com.lv297.travel_agency.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;

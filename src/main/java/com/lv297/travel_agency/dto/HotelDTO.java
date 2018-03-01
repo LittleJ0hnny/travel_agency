@@ -1,4 +1,8 @@
-package com.lv297.travel_agency.entities;
+package com.lv297.travel_agency.dto;
+
+import com.lv297.travel_agency.entities.City;
+import com.lv297.travel_agency.entities.Hotel;
+import com.lv297.travel_agency.entities.Room;
 
 import java.util.List;
 

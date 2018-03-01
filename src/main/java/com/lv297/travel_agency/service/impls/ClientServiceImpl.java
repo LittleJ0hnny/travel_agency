@@ -38,7 +38,37 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public Client getClientByEmail(String email) {
+        return clientRepository.findByEmail(email);
+    }
+
+    @Override
     public List<Client> getAllClients() {
         return clientRepository.findAll();
+    }
+
+    @Override
+    public boolean validatePassword(String password, String password2) {
+        return !password.equals(password2);
+    }
+
+    @Override
+    public boolean validateEmail(String email) {
+        Client client = clientRepository.findByEmail(email);
+        if(client == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public boolean checkEmailOnExist(String email) {
+        Client client = clientRepository.findByEmail(email);
+        if(client == null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

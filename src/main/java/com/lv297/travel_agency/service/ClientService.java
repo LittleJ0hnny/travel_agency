@@ -9,5 +9,9 @@ public interface ClientService {
     void deleteClient(Client client);
     void saveClient(Client client);
     Client getClientById(int id);
+    Client getClientByEmail(String email);
     List<Client> getAllClients();
+    boolean validatePassword(String password, String password2);
+    boolean validateEmail(String email);
+    boolean checkEmailOnExist(String email);
 }

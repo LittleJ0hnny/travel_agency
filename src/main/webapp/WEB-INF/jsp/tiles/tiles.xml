@@ -4,15 +4,26 @@
 <tiles-definitions>
     <definition name="common-definition" template="/WEB-INF/jsp/tiles/layouts/layout.jsp">
         <put-attribute name="title" value=""/>
-        <put-attribute name="header" value="/WEB-INF/jsp/tiles/templates/mainHeader.jsp"/>
+        <put-attribute name="header" value=""/>
         <put-attribute name="index" value=""/>
         <put-attribute name="content" value=""/>
         <put-attribute name="input" value=""/>
         <put-attribute name="footer" value="/WEB-INF/jsp/tiles/templates/mainFooter.jsp"/>
     </definition>
     <definition name="index" extends="common-definition">
-        <put-attribute name="title" value="Welcome Page" />
+        <put-attribute name="title" value="Welcome Page"/>
+        <put-attribute name="header" value="/WEB-INF/jsp/components/headers/startHeader.jsp"/>
         <put-attribute name="index" value="/WEB-INF/jsp/components/index.jsp"/>
+    </definition>
+    <definition name="registrationPage" extends="common-definition">
+        <put-attribute name="title" value="Registration Page"/>
+        <put-attribute name="header" value="/WEB-INF/jsp/components/headers/startHeader.jsp"/>
+        <put-attribute name="input" value="/WEB-INF/jsp/components/registration/registrationForm.jsp"/>
+    </definition>
+    <definition name="loginPage" extends="common-definition">
+        <put-attribute name="title" value="Registration Page"/>
+        <put-attribute name="header" value="/WEB-INF/jsp/components/headers/startHeader.jsp"/>
+        <put-attribute name="input" value="/WEB-INF/jsp/components/registration/loginPage.jsp"/>
     </definition>
 
     <!--Definitions for countries-->

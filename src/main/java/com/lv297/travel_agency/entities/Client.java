@@ -15,10 +15,23 @@ public class Client {
     private String citizenship;
     private String email;
     private String password;
+    private String role;
     private List<Visa> visas;
 
+    public Client(){}
+
+    public Client(String firstname, String lastname, LocalDate bithday, String citizenship, String email, String password, String role) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.bithday = bithday;
+        this.citizenship = citizenship;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "client_id", nullable = false, unique = true)
     public int getId() {
         return id;
@@ -80,6 +93,15 @@ public class Client {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Column(name = "role", nullable = false, length = 10)
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
