@@ -15,4 +15,5 @@ public interface HotelService {
     List<Hotel> getAllHotelsForCity(int id);
     List<Hotel> findFreeHotelInDateRange(int cityId, LocalDate dateFrom, LocalDate dateTo);
     List<HotelDTO> hotelsStatistic();
+    List<Hotel> searchHotelsByNameForCity(String name, int cityId);
 }

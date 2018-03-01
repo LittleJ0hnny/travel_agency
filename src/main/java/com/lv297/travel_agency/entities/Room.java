@@ -1,10 +1,22 @@
 package com.lv297.travel_agency.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Table(name = "room")
+@NamedNativeQuery(name = "findFreeRoomInHotelInDateRange",
+query = "call findFreeRoomInHotelInDateRange(:hotelId,:dateFrom,:dateTo)",
+resultClass = Room.class)
+//@NamedStoredProcedureQuery(name = "findFreeRoomInHotelInDateRange",
+//procedureName = "findFreeRoomInHotelInDateRange",
+//resultClasses = {Room.class},
+//parameters = {
+//        @StoredProcedureParameter(mode = ParameterMode.IN, type = Integer.class, name = "hotelId"),
+//        @StoredProcedureParameter(mode = ParameterMode.IN, type = LocalDate.class, name = "dateFrom"),
+//        @StoredProcedureParameter(mode = ParameterMode.IN, type = LocalDate.class, name = "dateTo")
+//})
 public class Room {
     private int id;
     private Hotel hotel;

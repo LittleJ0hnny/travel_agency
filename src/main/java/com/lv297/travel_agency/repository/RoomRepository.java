@@ -13,17 +13,21 @@ public interface RoomRepository extends JpaRepository<Room, Integer> {
     @Query
     List<Room> findByHotel_Id(int id);
 
-    @Query("SELECT room FROM Room room " +
-            "WHERE room.hotel.id=:id AND " +
-            "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +
-            "WHERE ((booking.bookingTo>DATE(:dateFrom) AND " +
-            "booking.bookingFrom<=DATE(:dateFrom)) OR " +
-            "(booking.bookingTo>=DATE(:dateTo) AND " +
-            "booking.bookingFrom<DATE(:dateTo)) OR " +
-            "(DATE(:dateFrom)<=booking.bookingFrom AND " +
-            "DATE(:dateFrom)<booking.bookingTo AND " +
-            "DATE(:dateTo)>booking.bookingFrom AND " +
-            "DATE(:dateTo)>=booking.bookingTo)) AND " +
-            "booking.hotel.id=:id)")
-    List<Room> findFreeRoomInHotelInDateRange(@Param("id") int hotelId, @Param("dateFrom") LocalDate dateFrom, @Param("dateTo") LocalDate dateTo);
+//    @Procedure(name = "findFreeRoomInHotelInDateRange")
+    @Query(name = "findFreeRoomInHotelInDateRange")
+    List<Room> findFreeRoomInHotelInDateRange(@Param("hotelId") int hotelId, @Param("dateFrom") LocalDate dateFrom, @Param("dateTo") LocalDate dateTo);
+
+//    @Query("SELECT room FROM Room room " +
+//            "WHERE room.hotel.id=:id AND " +
+//            "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +
+//            "WHERE ((booking.bookingTo>DATE(:dateFrom) AND " +
+//            "booking.bookingFrom<=DATE(:dateFrom)) OR " +
+//            "(booking.bookingTo>=DATE(:dateTo) AND " +
+//            "booking.bookingFrom<DATE(:dateTo)) OR " +
+//            "(DATE(:dateFrom)<=booking.bookingFrom AND " +
+//            "DATE(:dateFrom)<booking.bookingTo AND " +
+//            "DATE(:dateTo)>booking.bookingFrom AND " +
+//            "DATE(:dateTo)>=booking.bookingTo)) AND " +
+//            "booking.hotel.id=:id)")
+//    List<Room> findFreeRoomInHotelInDateRange(@Param("id") int hotelId, @Param("dateFrom") LocalDate dateFrom, @Param("dateTo") LocalDate dateTo);
 }

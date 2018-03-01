@@ -15,4 +15,7 @@ public interface CityRepository extends JpaRepository<City, Integer> {
 
     @Query("SELECT city FROM City city WHERE city.name LIKE %:name%")
     List<City> searchCitiesByName(@Param("name") String name);
+
+    @Query("SELECT city FROM City city WHERE city.name LIKE %:name% AND city.country.id=:countryId" )
+    List<City> searchCitiesByNameForCountry(@Param("name") String name, @Param("countryId") int countryId);
 }
