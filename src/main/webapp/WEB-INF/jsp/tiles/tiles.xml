@@ -5,19 +5,19 @@
     <definition name="common-definition" template="/WEB-INF/jsp/tiles/layouts/layout.jsp">
         <put-attribute name="title" value=""/>
         <put-attribute name="header" value="/WEB-INF/jsp/tiles/templates/mainHeader.jsp"/>
-        <put-attribute name="navigation" value=""/>
+        <put-attribute name="index" value=""/>
         <put-attribute name="content" value=""/>
         <put-attribute name="input" value=""/>
         <put-attribute name="footer" value="/WEB-INF/jsp/tiles/templates/mainFooter.jsp"/>
     </definition>
     <definition name="index" extends="common-definition">
         <put-attribute name="title" value="Welcome Page" />
+        <put-attribute name="index" value="/WEB-INF/jsp/components/index.jsp"/>
     </definition>
 
     <!--Definitions for countries-->
     <definition name="countryMain" extends="common-definition">
         <put-attribute name="title" value="Countries Manager"/>
-        <put-attribute name="navigation" value=""/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/country/table.jsp"/>
         <put-attribute name="input" value="/WEB-INF/jsp/components/country/inputFormSearch.jsp"/>
     </definition>
@@ -36,7 +36,6 @@
     <!--Definitions for cities-->
     <definition name="cityMain" extends="common-definition">
         <put-attribute name="title" value="Cities Manager"/>
-        <put-attribute name="navigation" value=""/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/city/table.jsp"/>
         <put-attribute name="input" value="/WEB-INF/jsp/components/city/inputFormSearch.jsp"/>
     </definition>
@@ -55,49 +54,37 @@
     <!--Definitions for hotels-->
     <definition name="hotelMain" extends="common-definition">
         <put-attribute name="title" value="Hotels Manager"/>
-        <put-attribute name="navigation" value=""/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/hotel/table.jsp"/>
         <put-attribute name="input" value="/WEB-INF/jsp/components/hotel/inputFormSearch.jsp"/>
     </definition>
     <!--Definitions for rooms-->
     <definition name="roomMain" extends="common-definition">
         <put-attribute name="title" value="Rooms Manager"/>
-        <put-attribute name="navigation" value=""/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/room/table.jsp"/>
         <put-attribute name="input" value="/WEB-INF/jsp/components/room/inputFormSearch.jsp"/>
     </definition>
     <!--Definitions for hotels-->
     <definition name="hotelStatisticMain" extends="common-definition">
         <put-attribute name="title" value="Rooms Manager"/>
-        <put-attribute name="navigation" value=""/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/statistic/hotel/table.jsp"/>
-        <put-attribute name="input" value=""/>
     </definition>
     <!--Definitions for hotels-->
     <definition name="countryStatisticMain" extends="common-definition">
         <put-attribute name="title" value="Rooms Manager"/>
-        <put-attribute name="navigation" value=""/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/statistic/country/table.jsp"/>
-        <put-attribute name="input" value=""/>
     </definition>
     <!--Definitions for hotels-->
     <definition name="clientStatisticMain" extends="common-definition">
         <put-attribute name="title" value="Rooms Manager"/>
-        <put-attribute name="navigation" value=""/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/statistic/client/table.jsp"/>
-        <put-attribute name="input" value=""/>
     </definition>
     <!--Definitions for hotels-->
     <definition name="clientsVisas" extends="common-definition">
         <put-attribute name="title" value="Rooms Manager"/>
-        <put-attribute name="navigation" value=""/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/statistic/client/visa/table.jsp"/>
-        <put-attribute name="input" value=""/>
     </definition>
     <definition name="visitedCountries" extends="common-definition">
         <put-attribute name="title" value="Rooms Manager"/>
-        <put-attribute name="navigation" value=""/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/statistic/client/country/table.jsp"/>
-        <put-attribute name="input" value=""/>
     </definition>
 </tiles-definitions>

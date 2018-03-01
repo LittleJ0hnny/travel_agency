@@ -6,7 +6,7 @@
         <th scope="col">Hotel name</th>
         <th scope="col">Type</th>
         <th scope="col">Price</th>
-        <th scope="col">Number bed</th>
+        <th scope="col">Number of beds</th>
     </tr>
     </thead>
     <tbody>

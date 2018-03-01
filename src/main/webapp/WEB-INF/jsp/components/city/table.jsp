@@ -3,7 +3,6 @@
 <table class="table table-hover">
     <thead>
         <tr>
-        <%--<th scope="col">ID</th>--%>
             <th scope="col">City name</th>
             <th scope="col">Country name</th>
             <th scope="col">Actions</th>
@@ -12,7 +11,6 @@
     <tbody>
     <c:forEach var="city" items="${cities}">
         <tr>
-            <%--<th scope="row">${city.id}</th>--%>
             <td>${city.name}</td>
             <td>${city.country.name}</td>
             <td>

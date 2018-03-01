@@ -10,8 +10,8 @@
     <tbody>
     <c:forEach var="hotel" items="${hotels}">
         <tr>
-            <td>${hotel.name}</td>
             <td>${hotel.city.name}</td>
+            <td>${hotel.name}</td>
             <td>
                 <a type="button"  class="btn btn-primary" href="${pageContext.request.contextPath}/rooms/selectRoomsByHotel/${hotel.id}">Get rooms</a>
             </td>

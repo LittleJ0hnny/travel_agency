@@ -19,6 +19,14 @@
     <script src="https://unpkg.com/popper.js"></script>
     <%--Bootstrap JS--%>
     <script src="<c:url value='/static/bootstrap/js/bootstrap.min.js' />"></script>
+    <%--For index page--%>
+    <link rel="stylesheet" href="<c:url value='/static/index/index.css' />">
+    <link rel="stylesheet" href="<c:url value='/static/index/slider.css' />">
+    <%--<link rel="stylesheet" href="<c:url value='/static/index/navigation/css/reset.css'/>">
+    <link rel="stylesheet" href="<c:url value='/static/index/navigation/css/style.css'/>">
+    <script src="<c:url value='/static/index/navigation/js/modernizr.js'/>"></script>
+    <script src="<c:url value='/static/index/navigation/js/jquery-2.1.4.js'/>"></script>
+    <script src="<c:url value='/static/index/navigation/js/main.js'/>"></script>--%>
 </head>
 
 <body>
@@ -27,13 +35,11 @@
 </header>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="nav-item dropdown" class="col">
-            <tiles:insertAttribute name="navigation"/>
-        </div>
-        <div class="container">
-            <tiles:insertAttribute name="input"/>
-        </div>
+    <div class="container-fluid">
+        <tiles:insertAttribute name="index"/>
+    </div>
+    <div class="container">
+        <tiles:insertAttribute name="input"/>
     </div>
     <div class="container">
         <tiles:insertAttribute name="content"/>
