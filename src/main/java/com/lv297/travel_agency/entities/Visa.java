@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
 
-@Cacheable
 @Entity
 @Table(name = "visa")
 public class Visa {
