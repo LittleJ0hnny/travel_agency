@@ -8,6 +8,7 @@
         <th scope="col">Number Rooms</th>
         <th scope="col">Number Clients</th>
         <th scope="col">Average booking time</th>
+        <th scope="col">Room statistic</th>
     </tr>
     </thead>
     <tbody>
@@ -19,6 +20,9 @@
             <td>${hotel.rooms.size()}</td>
             <td>${hotel.numberClient}</td>
             <td>${hotel.averageBookingTime}</td>
+            <td class="nav-item dropdown">
+                <a type="button"  class="btn btn-primary" href="${pageContext.request.contextPath}/rooms/statistic/${hotel.id}">Room statistic</a>
+            </td>
         </tr>
     </c:forEach>
     </tbody>

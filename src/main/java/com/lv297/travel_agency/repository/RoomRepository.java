@@ -17,6 +17,8 @@ public interface RoomRepository extends JpaRepository<Room, Integer> {
     @Query(name = "findFreeRoomInHotelInDateRange")
     List<Room> findFreeRoomInHotelInDateRange(@Param("hotelId") int hotelId, @Param("dateFrom") LocalDate dateFrom, @Param("dateTo") LocalDate dateTo);
 
+    @Query(value = "call getRoomsStatistic(:roomId,:hotelId,:dateFrom,:dateTo);",nativeQuery = true)
+    Integer getRoomsStatistic(@Param("roomId") int roomId,@Param("hotelId") int hotelId, @Param("dateFrom") LocalDate dateFrom, @Param("dateTo") LocalDate dateTo);
 //    @Query("SELECT room FROM Room room " +
 //            "WHERE room.hotel.id=:id AND " +
 //            "room.id NOT IN (SELECT booking.room.id FROM Booking booking " +

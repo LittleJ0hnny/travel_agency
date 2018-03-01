@@ -1,5 +1,6 @@
 package com.lv297.travel_agency.service.impls;
 
+import com.lv297.travel_agency.dto.RoomDTO;
 import com.lv297.travel_agency.entities.Room;
 import com.lv297.travel_agency.repository.RoomRepository;
 import com.lv297.travel_agency.service.RoomService;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -51,5 +53,18 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public List<Room> findFreeRoomInHotelInDateRange(int hotelId, LocalDate dateFrom, LocalDate dateTo) {
         return roomRepository.findFreeRoomInHotelInDateRange(hotelId, dateFrom, dateTo);
+    }
+
+    @Override
+    public List<RoomDTO> getRoomsStatistics(int hotelId, LocalDate dateFrom, LocalDate dateTo) {
+        List<RoomDTO> roomStatistic = new ArrayList<>();
+        List<Room> rooms = roomRepository.findByHotel_Id(hotelId);
+        int i=1;
+        Integer sum;
+        for (Room room : rooms) {
+            sum = roomRepository.getRoomsStatistic(room.getId(),hotelId,dateFrom,dateTo);
+            roomStatistic.add(new RoomDTO(room,i++,sum==null?0:sum));
+        }
+        return roomStatistic;
     }
 }
