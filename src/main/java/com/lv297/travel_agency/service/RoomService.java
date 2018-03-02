@@ -1,5 +1,6 @@
 package com.lv297.travel_agency.service;
 
+import com.lv297.travel_agency.dto.RoomDTO;
 import com.lv297.travel_agency.entities.Room;
 
 import java.time.LocalDate;
@@ -13,4 +14,5 @@ public interface RoomService {
     List<Room> getAllRooms();
     List<Room> getAllRoomsForHotel(int id);
     List<Room> findFreeRoomInHotelInDateRange(int hotelId, LocalDate dateFrom, LocalDate dateTo);
+    List<RoomDTO> getRoomsStatistics(int hotelId, LocalDate dateFrom, LocalDate dateTo);
 }

@@ -107,9 +107,16 @@
         <put-attribute name="header" value="/WEB-INF/jsp/tiles/templates/mainHeader.jsp"/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/statistic/client/visa/table.jsp"/>
     </definition>
+    <!--Definitions for hotels-->
     <definition name="visitedCountries" extends="common-definition">
         <put-attribute name="title" value="Rooms Manager"/>
         <put-attribute name="header" value="/WEB-INF/jsp/tiles/templates/mainHeader.jsp"/>
         <put-attribute name="content" value="/WEB-INF/jsp/components/statistic/client/country/table.jsp"/>
+    </definition>
+    <!--Definitions for hotels-->
+    <definition name="roomStatistic" extends="common-definition">
+        <put-attribute name="title" value="Rooms Manager"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/components/statistic/room/table.jsp"/>
+        <put-attribute name="input" value="/WEB-INF/jsp/components/statistic/room/inputFormSearch.jsp"/>
     </definition>
 </tiles-definitions>

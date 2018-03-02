@@ -1,5 +1,6 @@
 package com.lv297.travel_agency.service;
 
+import com.lv297.travel_agency.dto.RoomDTO;
 import com.lv297.travel_agency.entities.Hotel;
 import com.lv297.travel_agency.dto.HotelDTO;
 

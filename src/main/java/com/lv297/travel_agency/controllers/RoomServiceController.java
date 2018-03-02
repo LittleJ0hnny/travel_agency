@@ -47,9 +47,30 @@ public class RoomServiceController {
         return model;
     }
 
+    @RequestMapping("/rooms/statistic/{hotelId}")
+    public ModelAndView getStatistic(@PathVariable int hotelId) {
+        ModelAndView modelAndView = new ModelAndView("roomStatistic");
+        modelAndView.addObject("hotelId", hotelId);
+        return modelAndView;
+    }
+
+    @RequestMapping("/rooms/roomStatistic")
+    public ModelAndView getRoomsStatistic(@RequestParam int hotelId, @RequestParam String dateFrom, @RequestParam String dateTo) {
+        LocalDate from = LocalDate.parse(dateFrom);
+        LocalDate to = LocalDate.parse(dateTo);
+
+        System.out.println(from);
+        System.out.println(to);
+        if (from.toEpochDay() > to.toEpochDay()) {
+            return getStatistic(hotelId);
+        }
 
 
-
+        ModelAndView modelAndView = new ModelAndView("roomStatistic");
+        modelAndView.addObject("hotelId", hotelId);
+        modelAndView.addObject("rooms",roomService.getRoomsStatistics(hotelId,from,to));
+        return modelAndView;
+    }
 
 
 
