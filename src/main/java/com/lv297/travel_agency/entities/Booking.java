@@ -17,6 +17,14 @@ public class Booking {
     public Booking() {
     }
 
+    public Booking(Client client, Hotel hotel, Room room, LocalDate bookingFrom, LocalDate bookingTo) {
+        this.client = client;
+        this.hotel = hotel;
+        this.room = room;
+        this.bookingFrom = bookingFrom;
+        this.bookingTo = bookingTo;
+    }
+
     public Booking(int id, Client client, Hotel hotel, Room room, LocalDate bookingFrom, LocalDate bookingTo) {
         this.id = id;
         this.client = client;

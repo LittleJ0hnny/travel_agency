@@ -38,12 +38,17 @@ public class RoomServiceController {
             return selectRoomsByHotel(hotelId);
         }
         List rooms;
-        ModelAndView model = new ModelAndView("roomMain");
+        ModelAndView model = new ModelAndView("roomsFreeForBooking");
         rooms = roomService.findFreeRoomInHotelInDateRange(hotelId, from, to);
+        model.addObject("dateFrom", from);
+        model.addObject("dateTo", to);
         model.addObject("hotelId", hotelId);
         model.addObject("rooms", rooms);
         return model;
     }
+
+
+
 
 
 
