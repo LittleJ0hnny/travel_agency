@@ -2,6 +2,7 @@ package com.lv297.travel_agency.entities;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "country")
@@ -60,6 +61,24 @@ public class Country {
 
     public void setCities(List<City> cities) {
         this.cities = cities;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Country)) return false;
+
+        Country country = (Country) o;
+
+        if (id != country.id) return false;
+        return name.equals(country.name);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + name.hashCode();
+        return result;
     }
 
     @Override

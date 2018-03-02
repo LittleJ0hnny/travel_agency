@@ -72,7 +72,7 @@ public class Visa {
         this.validTo = validTo;
     }
 
-    @Column(name = "last_time_used", nullable = false)
+    @Column(name = "last_time_used")
     public LocalDate getLastTimeUsed() {
         return lastTimeUsed;
     }

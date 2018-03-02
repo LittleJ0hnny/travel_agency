@@ -1,12 +1,15 @@
 package com.lv297.travel_agency.service.impls;
 
 import com.lv297.travel_agency.entities.Client;
+import com.lv297.travel_agency.entities.Country;
+import com.lv297.travel_agency.entities.Visa;
 import com.lv297.travel_agency.repository.ClientRepository;
 import com.lv297.travel_agency.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -70,5 +73,18 @@ public class ClientServiceImpl implements ClientService {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public boolean checkClientVisas(Client client, Country country, LocalDate dateTo) {
+        boolean result = false;
+        for(Visa visa: client.getVisas()) {
+            System.out.println(visa.getCountry().equals(country));
+            if(visa.getCountry().equals(country) && dateTo.isBefore(visa.getValidTo())) {
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
 }

@@ -84,6 +84,17 @@
         <put-attribute name="content" value="/WEB-INF/jsp/components/room/tableForFreeRooms.jsp"/>
         <put-attribute name="input" value="/WEB-INF/jsp/components/room/inputFormSearch.jsp"/>
     </definition>
+    <definition name="successPage" extends="common-definition">
+        <put-attribute name="title" value="Rooms Manager"/>
+        <put-attribute name="header" value="/WEB-INF/jsp/tiles/templates/mainHeader.jsp"/>
+        <put-attribute name="input" value="/WEB-INF/jsp/components/room/successPage.jsp"/>
+    </definition>
+    <definition name="failurePage" extends="common-definition">
+        <put-attribute name="title" value="Rooms Manager"/>
+        <put-attribute name="header" value="/WEB-INF/jsp/tiles/templates/mainHeader.jsp"/>
+        <put-attribute name="input" value="/WEB-INF/jsp/components/room/failurePage.jsp"/>
+    </definition>
+
     <!--Definitions for hotels-->
     <definition name="hotelStatisticMain" extends="common-definition">
         <put-attribute name="title" value="Rooms Manager"/>

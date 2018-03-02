@@ -40,8 +40,8 @@ public class RoomServiceController {
         List rooms;
         ModelAndView model = new ModelAndView("roomsFreeForBooking");
         rooms = roomService.findFreeRoomInHotelInDateRange(hotelId, from, to);
-        model.addObject("dateFrom", from);
-        model.addObject("dateTo", to);
+        model.addObject("dateFrom", from.toString());
+        model.addObject("dateTo", to.toString());
         model.addObject("hotelId", hotelId);
         model.addObject("rooms", rooms);
         return model;

@@ -25,11 +25,11 @@
             </select>
 
             <label for="password">Password</label>
-            <input type="text" class="form-control" id="password" name ="password" placeholder="password">
+            <input type="password" max="16" min="6" class="form-control" id="password" name ="password" placeholder="password">
             <small class="form-text text-muted">${passwordMessage}</small>
 
             <label for="passwordConfirm">Password</label>
-            <input type="text" class="form-control" id="passwordConfirm" name ="password2" placeholder="confirm password">
+            <input type="password" max="16" min="6" class="form-control" id="passwordConfirm" name ="password2" placeholder="confirm password">
             <small class="form-text text-muted">${passwordMessage}</small>
 
             <button type="submit" class="btn btn-primary">Sign in</button>

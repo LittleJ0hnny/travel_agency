@@ -19,10 +19,10 @@
             <td>${room.price}</td>
             <td>${room.num_of_beds}</td>
             <td>
-                <form action="${pageContext.request.contextPath}/" method="post">
+                <form action="${pageContext.request.contextPath}/booking" method="post">
                     <input type="hidden" name="userId" value="${user.id}">
                     <input type="hidden" name="roomId" value="${room.id}">
-                    <input type="hidden" name="userId" value="${hotel.id}">
+                    <input type="hidden" name="hotelId" value="${hotelId}">
                     <input type="hidden" name="dateFrom" value="${dateFrom}">
                     <input type="hidden" name="dateTo" value="${dateTo}">
                     <input type="submit" value="Book">
